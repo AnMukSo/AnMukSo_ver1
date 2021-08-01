@@ -7,7 +7,7 @@ import 'package:an_muk_so/initial/2_get_privacy.dart';
 import 'package:an_muk_so/services/auth.dart';
 import 'package:an_muk_so/theme/colors.dart';
 
-import 'bottom_bar.dart';
+import 'bottom_bar_navigation.dart';
 import 'home/home.dart';
 import 'login/login.dart';
 import 'ranking/ranking.dart';

@@ -6,7 +6,7 @@ import 'package:an_muk_so/initial/1_policy_agree.dart';
 
 import 'package:an_muk_so/models/user.dart';
 import 'package:an_muk_so/login/login.dart';
-import 'package:an_muk_so/bottom_bar.dart';
+import 'package:an_muk_so/bottom_bar_navigation.dart';
 import 'package:an_muk_so/services/db.dart';
 
 class Wrapper extends StatelessWidget {
