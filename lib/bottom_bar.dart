@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:an_muk_so/camera/camera_page.dart';
+i//mport 'package:an_muk_so/camera/camera_page.dart';
 import 'package:an_muk_so/home/home.dart';
 import 'package:an_muk_so/ranking/ranking.dart';
 import 'package:an_muk_so/shared/appbar.dart';
