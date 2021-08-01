@@ -101,10 +101,11 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  #assets:
+  assets:
     #아래꺼는 이약모약에서 가져온 거라서 수정 필요함!
     #- assets/camera/
-    #- assets/icons/
+    - assets/icons/
+    - assets/login/
     #- assets/images/
     #- assets/case_model/model_unquant.tflite
     #- assets/case_model/labels.txt
@@ -118,16 +119,16 @@ flutter:
 
 
 #이약모약에서 가져온 폰트 넣어두어야 한다.
-#fonts:
-  #- family: NotoSansKR
-    #fonts:
-      #- asset: assets/fonts/NotoSansKR-Bold.otf
-      #- asset: assets/fonts/NotoSansKR-Medium.otf
-      #- asset: assets/fonts/NotoSansKR-Regular.otf
+  fonts:
+    - family: NotoSansKR
+      fonts:
+        - asset: assets/fonts/NotoSansKR-Bold.otf
+        - asset: assets/fonts/NotoSansKR-Medium.otf
+        - asset: assets/fonts/NotoSansKR-Regular.otf
 
-  #- family: NotoSansCJKKR
-    #fonts:
-      #- asset: assets/fonts/NotoSansCJKkr-Regular.otf
+    - family: NotoSansCJKKR
+      fonts:
+        - asset: assets/fonts/NotoSansCJKkr-Regular.otf
 #여기까지 이약모약꺼 가져온거
 
 

@@ -1,56 +1,113 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+//import 'package:an_muk_so/home/search_screen.dart';
+import 'package:an_muk_so/initial/1_policy_agree.dart';
+import 'package:an_muk_so/initial/2_get_privacy.dart';
+import 'package:an_muk_so/services/auth.dart';
+import 'package:an_muk_so/theme/colors.dart';
 
+import 'bottom_bar.dart';
+import 'home/home.dart';
+import 'login/login.dart';
+import 'ranking/ranking.dart';
+import 'package:an_muk_so/models/user.dart';
+import 'package:an_muk_so/wrapper.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
+    return StreamProvider<TheUser>(
+      create: (_) => AuthService().user,
+      child: MaterialApp(
+          title: 'AN MUK SO ver 1.0',
+          home: Wrapper(),
+          debugShowCheckedModeBanner: false,
+          routes: {
+            // TODO: Add route
+            '/start': (context) => Wrapper(),
+            '/login': (context) => LoginPage(),
+            '/policy_agree': (context) => PolicyAgreePage(),
+            '/get_privacy': (context) => GetPrivacyPage(),
+            '/home': (context) => HomePage(),
+            // '/camera': (context) => CameraPage(),
+            '/ranking': (context) => RankingPage(),
+            '/bottom_bar': (context) => BottomBar(),
+            //'/search': (context) => SearchScreen(),
+          },
+          theme: _AMSTheme),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key}) : super(key: key);
+final ThemeData _AMSTheme = _buildAMSTheme();
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
+ThemeData _buildAMSTheme() {
+  final ThemeData base = ThemeData();
+  return base.copyWith(
+    primaryColor: primary300_main,
+    buttonColor: primary300_main,
+    textSelectionColor: primary500_light_text,
+    errorColor: warning,
+
+    textTheme: _buildTextTheme(base.textTheme),
+  );
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+TextTheme _buildTextTheme(TextTheme base) {
+  return base
+      .copyWith(
+    caption:
+    TextStyle(fontSize: 12, color: Color(0xFFC4C4C4), letterSpacing: 0),
+    overline:
+    TextStyle(fontSize: 10, color: Color(0xFFC4C4C4), letterSpacing: 0),
+    headline1: TextStyle(
+        fontSize: 34,
+        fontWeight: FontWeight.bold,
+        color: Color(0xFF0D0D0D)),
+    headline2: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF666666)),
+    headline3: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFF666666)),
+    headline4: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: Color(0xFF2C2C2C)),
+    headline5: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFF1F1F1F)), //0D0D0D
+    headline6: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFF1F1F1F)),
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("STANDARD_ in JUDA"),
-      ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('test').doc('data').snapshots(),
-      builder: (context, snapshot){
-          if(!snapshot.hasData){
-            return CircularProgressIndicator();
-          }
+    subtitle1: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: Color(0xFF1F1F1F)),
+    subtitle2: TextStyle(
+        fontSize: 12, fontWeight: FontWeight.w500, color: gray900),
 
-       return Center(child: Text(snapshot.data['name'],style: TextStyle(fontSize: 30),));
-
-
-          //return Text(snapshots.data['name']);
-      },
-      ),
-
-    ); }
+    bodyText1: TextStyle(
+        fontSize: 16, fontWeight: FontWeight.w400, color: gray500),
+    bodyText2: TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFF666666)),
+  )
+      .apply(
+    fontFamily: 'NotoSansKR',
+    displayColor: black87,
+  );
 }
