@@ -104,6 +104,7 @@ flutter:
   assets:
     #아래꺼는 이약모약에서 가져온 거라서 수정 필요함!
     #- assets/camera/
+    - assets/snacks/
     - assets/icons/
     - assets/login/
     #- assets/images/
