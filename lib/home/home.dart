@@ -1,5 +1,3 @@
-// dandan 브런치를 만들어보자현
-//todo 배경 색 맞춰줘야함.
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -24,56 +22,62 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //배경 색 지정 완료
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset : false,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
             child: Padding(
-            padding: const EdgeInsets.fromLTRB(5,0,5,0),
+            padding: const EdgeInsets.fromLTRB(16,0,16,0),
             child: Column(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 60),
-                ),
+                //새로운 소식 배너
                 Column(
                   children: [
+                    Container(height: 50, color: Colors.white,),
                     Container(
                       height: 25,
                       alignment: Alignment.topLeft,
-                      padding: EdgeInsets.only(left: 3),
+                      //padding: EdgeInsets.only(left: 16),
                       color: Colors.white,
                       child: Text('새로운 소식',
-                        style: Theme.of(context).textTheme.headline6,),
+                        style: Theme.of(context).textTheme.headline5),
 
                     ),
+                    //TODO: 이부분에 공지 제목 DB필요함 글씨가 몇자 이상일 때...으로 표현 되는 것도 감안해야한다.
                     SizedBox(
                       child: Container(
                         alignment: Alignment.centerLeft,
-                        width: 343,
+                        width: double.infinity - 32,
                         height: 50,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black, width: 2)),
-                        child: Text('     2021년 8월 아토피 캠프 공지 입니다.',
-                            style: Theme.of(context).textTheme.headline5,),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 16.0),
+                          child: Text('2021년 8월 아토피 캠프 공지 입니다.',
+                              style: Theme.of(context).textTheme.headline5,),
+                        ),
                       ),
                     ),
                   ],
                 ),
-                //새로운 소식 배너
+                // 새로운 소식, 새로운 제품 사이 공백
                 Padding(
                   padding: EdgeInsets.only(top: 40),
                 ),
-                // 새로운 소식, 새로운 제품 사이 공백
+                //새로운 제품
                 Container(
                   alignment: Alignment.topLeft,
-                  padding: EdgeInsets.only(left: 3),
                   color: Colors.white,
                   child: Text('새로운 제품',
-                    style: Theme.of(context).textTheme.headline6,),
+                    style: Theme.of(context).textTheme.headline5,),
 
                 ),
+                //새로운 제품 DB에서 불러올 것들
                 GridView.builder(
-                  shrinkWrap: true,
+                    physics: new NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 150,
                         childAspectRatio: 1 / 1.2,
@@ -104,10 +108,7 @@ class _HomePageState extends State<HomePage> {
                                   ),
                             ),
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => MyApp()),
-                              );
+                             print('새로운 제품 ${entries[index]}');
                             },
                           ),
                         ],
@@ -117,19 +118,20 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: EdgeInsets.only(top: 30),
                 ),
+                //TODO: 유투브 링크 타고 갈 수 있도록 화면 보여주는 것과, 그 유투브로 이동할 수 있게끔 하는 것!!
                 Container(
                   height: 25,
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: 3),
+                  //padding: EdgeInsets.only(left: 3),
                   color: Colors.white,
                   child: Text('안먹소 먹거리 정보 채널 ( YOUTUBE )',
-                    style: Theme.of(context).textTheme.headline6,),
+                    style: Theme.of(context).textTheme.headline5,),
                   ),
                 SizedBox(
                   child: Container(
-                      alignment: Alignment.center,
-                      width: 343,
-                      height: 228,
+                      //alignment: Alignment.center,
+                      width: double.infinity - 32,
+                      height: 230,
                       child: Image.asset('assets/snacks/tasteOfNature.png')
                     // AssetImage('assets/snacks/octopus.png'),
                   ),
@@ -137,21 +139,20 @@ class _HomePageState extends State<HomePage> {
                 Column(
                   children: [
                     Container(
+                      padding:EdgeInsets.only(top: 26, bottom: 9),
                       alignment: Alignment.topLeft,
-                      padding: EdgeInsets.fromLTRB(3,10, 0.0, 3),
                       color: Colors.white,
                       child: Text('후원 계좌',
-                          style: Theme.of(context).textTheme.headline6,),
-
+                          style: Theme.of(context).textTheme.headline5,),
                     ),
                     SizedBox(
                       child: Container(
                         alignment: Alignment.center,
-                        width: 342,
+                        width: double.infinity - 32,
                         height: 76,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: Colors.black, width: 3)),
+                            borderRadius: BorderRadius.circular(6),
+                            border: Border.all(color: Colors.black, width: 2)),
                         child: Text('우리은행 1002-101-21-2229 안전한 먹거리 소비자 연합\n'
                             '    카카오 1242-445-6446 안전한 먹거리 소비자 연합',
                         style: Theme.of(context).textTheme.subtitle1,),
