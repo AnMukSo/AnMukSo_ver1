@@ -1,67 +1,33 @@
 class Food {
-  final String barCode;
+  final String barCode; //바코드 숫자
+  final String entpName; //회사이름
 
-  //final String chart; // 성상 (본품은 백색의 정제다.)
-  //final List eeDocData;
+ // final String ingrName; // 음식 첨가제??
+  final String itemName; // 상품 이름
 
-  final String entpName;
-  //final String entpNo;
-  //final String etcOtcCode; // 일반의약품, 전문의약품
+  final String itemSeq; //상품 고유 번호
+//  final String materialName; // 원료성분??
+  final List warningData; //주의사항
 
-  final String ingrName; // 의약품 첨가제
-  final String itemName; //
+  final num totalRating; //별점
+  final num numOfReviews; //리뷰 개수
+  final List searchNameList; //검색어 이름
 
-  final String itemSeq;
-  //final String mainItemIngr; // 유효성분 (염산에페드린)
-  final String materialName; // 원료성분 (1정 중 80밀리그램,염산에페드린,KP,25,밀리그램)
-  final List nbDocData;
-
-  //final String permitKindName; // 허가, 신고 구분
-  //final String storageMethod;
-  //final String totalContect; // (1000밀리리터 중)
-
- // final List udDocData;
- // final String udDocId;
- // final String validTerm;
-
-  final num totalRating;
-  final num numOfReviews;
-  final List searchNameList;
-  //final List pharmacistTips;
-
-  final String rankCategory;
+  final String rankCategory; //카테고리
 
   Food(
       {this.barCode,
 
-        //this.chart,
-
-        //this.eeDocData,
-
         this.entpName,
-        //this.entpNo,
-        //this.etcOtcCode,
-
-        this.ingrName,
+      //  this.ingrName,
         this.itemName,
 
         this.itemSeq,
-        //this.mainItemIngr,
-        this.materialName,
-        this.nbDocData,
-
-        //this.permitKindName,
-        //this.storageMethod,
-        //this.totalContect,
-        //this.udDocData,
-        //this.udDocId,
-        //this.validTerm,
-
-        //this.category,
+      //  this.materialName,
+        this.warningData,
         this.totalRating,
         this.numOfReviews,
         this.searchNameList,
-        //this.pharmacistTips,
         this.rankCategory
       });
 }

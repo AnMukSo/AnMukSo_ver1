@@ -2,7 +2,7 @@ import 'package:an_muk_so/shared/customAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:an_muk_so/theme/colors.dart';
 
-//import 'Page/ranking_content_page.dart';
+import 'Page/ranking_content_page.dart';
 
 String getCategory; //카테고리 받아오기 위함
 
@@ -34,18 +34,18 @@ class RankingPage extends StatelessWidget {
                             .bodyText2
                             .copyWith(color: gray900),
                       )),
-                  // onTap: () {
-                  //   getCategory = rank_cateogry[index]; //test
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) =>
-                  //         RankingContentPage(
-                  //           categoryName: rank_cateogry[index],
-                  //           filter: '리뷰 많은 순',
-                  //         )),
-                  //   );
-                  // },
+                   onTap: () {
+                    getCategory = rank_cateogry[index]; //test
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                          RankingContentPage(
+                            categoryName: rank_cateogry[index],
+                            filter: '리뷰 많은 순',
+                          )),
+                    );
+                   },
                 ),
               );
             },
