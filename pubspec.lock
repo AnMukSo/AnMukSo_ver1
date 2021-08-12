@@ -295,27 +295,6 @@ packages:
       url: "https://github.com/espresso3389/flutter_datetime_picker"
     source: git
     version: "1.4.0"
-  flutter_facebook_auth:
-    dependency: "direct main"
-    description:
-      name: flutter_facebook_auth
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.2+1"
-  flutter_facebook_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_facebook_auth_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.1"
-  flutter_facebook_auth_web:
-    dependency: transitive
-    description:
-      name: flutter_facebook_auth_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.6"
   flutter_launcher_icons:
     dependency: "direct main"
     description:
@@ -702,13 +681,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.19"
-  tflite:
-    dependency: "direct main"
-    description:
-      name: tflite
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.1.2"
   typed_data:
     dependency: transitive
     description:
