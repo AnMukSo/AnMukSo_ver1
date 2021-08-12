@@ -13,24 +13,24 @@ class DatabaseService {
 
   /* Drug List */
   // collection reference
-  final CollectionReference drugCollection =
+  final CollectionReference foodCollection =
   FirebaseFirestore.instance.collection('Foods');
-  Query drugQuery = FirebaseFirestore.instance.collection('Foods');
+  Query foodQuery = FirebaseFirestore.instance.collection('Foods');
 
   //drugSnapshot 값 get이랑 set에서 해주기
-  Stream<List<Food>> drugsSnapshots;
-  Stream<List<SavedFood>> drugsFromUserSnapshots;
+  Stream<List<Food>> foodsSnapshots;
+  Stream<List<SavedFood>> foodsFromUserSnapshots;
 
 
   Stream<List<Food>> setForSearch(String searchVal, int limit) {
-    drugQuery = drugQuery
+    foodQuery = foodQuery
         .where('ITEM_NAME', isGreaterThanOrEqualTo: searchVal)
         .orderBy('ITEM_NAME', descending: false)
         .limit(limit);
 
-    drugsSnapshots = drugQuery.snapshots().map(_drugListFromSnapshot);
+    foodsSnapshots = foodQuery.snapshots().map(_foodListFromSnapshot);
 
-    return drugsSnapshots;
+    return foodsSnapshots;
   }
 
 
@@ -38,62 +38,42 @@ class DatabaseService {
   //for search from User drugs
   Stream<List<Food>> setForSearchFromAllAfterRemainStartAt(
       String searchVal, int limit) {
-    drugQuery = drugQuery
+    foodQuery = foodQuery
         .where('searchNameList', arrayContains: searchVal)
         .orderBy('ITEM_NAME', descending: false)
         .limit(limit);
 
-    drugsSnapshots = drugQuery.snapshots().map(_drugListFromSnapshot);
+    foodsSnapshots = foodQuery.snapshots().map(_foodListFromSnapshot);
 
-    return drugsSnapshots;
+    return foodsSnapshots;
   }
 
   Stream<List<Food>> setForSearchFromAllStartAtSearch(
       String searchVal, int limit) {
-    drugQuery = drugQuery
+    foodQuery = foodQuery
         .where('searchNameList', arrayContains: searchVal)
         .orderBy('ITEM_NAME', descending: false)
         .startAt([searchVal]).limit(limit);
 
-    drugsSnapshots = drugQuery.snapshots().map(_drugListFromSnapshot);
+    foodsSnapshots = foodQuery.snapshots().map(_foodListFromSnapshot);
 
-    return drugsSnapshots;
+    return foodsSnapshots;
   }
 
   //drug list from snapshot
-  List<Food> _drugListFromSnapshot(QuerySnapshot snapshot) {
+  List<Food> _foodListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Food(
           barCode: doc.data()['BAR_CODE'] ?? '',
-          //chart: doc.data()['CHART'] ?? '',
-
-          //eeDocData: doc.data()['EE_DOC_DATA'] ?? '',
           entpName: doc.data()['ENTP_NAME'] ?? '',
-          //entpNo: doc.data()['ENTP_NO'] ?? '',
-
-          //etcOtcCode: doc.data()['ETC_OTC_CODE'] ?? '',
-          ingrName: doc.data()['INGR_NAME'] ?? '',
+         // ingrName: doc.data()['INGR_NAME'] ?? '',
           itemName: doc.data()['ITEM_NAME'] ?? '',
-
           itemSeq: doc.data()['ITEM_SEQ'] ?? '',
-          //mainItemIngr: doc.data()['MAIN_ITEM_INGR'] ?? '',
-          materialName: doc.data()['MATERIAL_NAME'] ?? '',
-
-          nbDocData: doc.data()['NB_DOC_DATA'] ?? '',
-          //permitKindName: doc.data()['PERMIT_KIND_NAME'] ?? '',
-          //storageMethod: doc.data()['STORAGE_METHOD'] ?? '',
-          //totalContect: doc.data()['TOTAL_CONTENT'] ?? '',
-
-          //udDocData: doc.data()['UD_DOC_DATA'] ?? '',
-          //udDocId: doc.data()['UD_DOC_ID'] ?? '',
-          //validTerm: doc.data()['VALID_TERM'] ?? '',
-
-          //category: doc.data()['PRDUCT_TYPE'] ?? '카테고리 없음',
-
+         // materialName: doc.data()['MATERIAL_NAME'] ?? '',
+          warningData: doc.data()['WARNING_DATA'] ?? '',
           totalRating: doc.data()['totalRating'] ?? 0,
           numOfReviews: doc.data()['numOfReviews'] ?? 0,
           searchNameList: doc.data()['searchNameList'] ?? [],
-
           rankCategory: doc.data()['RANK_CATEGORY'] ?? ''
       );
     }).toList();
@@ -101,43 +81,31 @@ class DatabaseService {
 
   /* Drug */
   // drug data from snapshots
-  Food _drugFromSnapshot(DocumentSnapshot snapshot) {
+  Food _foodFromSnapshot(DocumentSnapshot snapshot) {
     return Food(
       barCode: snapshot.data()['BAR_CODE'] ?? '',
-      //chart: snapshot.data()['CHART'] ?? '',
 
-      //eeDocData: snapshot.data()['EE_DOC_DATA'] ?? '',
       entpName: snapshot.data()['ENTP_NAME'] ?? '',
-      //entpNo: snapshot.data()['ENTP_NO'] ?? '',
 
-      //etcOtcCode: snapshot.data()['ETC_OTC_CODE'] ?? '',
-      ingrName: snapshot.data()['INGR_NAME'] ?? '',
+   //   ingrName: snapshot.data()['INGR_NAME'] ?? '',
       itemName: snapshot.data()['ITEM_NAME'] ?? '',
 
       itemSeq: snapshot.data()['ITEM_SEQ'] ?? '',
-      //mainItemIngr: snapshot.data()['MAIN_ITEM_INGR'] ?? '',
-      materialName: snapshot.data()['MATERIAL_NAME'] ?? '',
+   //   materialName: snapshot.data()['MATERIAL_NAME'] ?? '',
 
-      nbDocData: snapshot.data()['NB_DOC_DATA'] ?? '',
-      // permitKindName: snapshot.data()['PERMIT_KIND_NAME'] ?? '',
-      // storageMethod: snapshot.data()['STORAGE_METHOD'] ?? '',
-      // totalContect: snapshot.data()['TOTAL_CONTENT'] ?? '',
-
-      //udDocData: snapshot.data()['UD_DOC_DATA'] ?? '',
-      //udDocId: snapshot.data()['UD_DOC_ID'] ?? '',
-      //validTerm: snapshot.data()['VALID_TERM'] ?? '',
-
-      //category: snapshot.data()['PRDUCT_TYPE'] ?? '카테고리 없음',
+      warningData: snapshot.data()['WARNING_DATA'] ?? '',
 
       totalRating: snapshot.data()['totalRating'] ?? 0,
 
       numOfReviews: snapshot.data()['numOfReviews'] ?? 0,
+        rankCategory: snapshot.data()['RANK_CATEGORY'] ?? ''
+
     );
   }
 
-  // get drug doc stream
-  Stream<Food> get drugData {
-    return drugCollection.doc(itemSeq).snapshots().map(_drugFromSnapshot);
+  // get food doc stream
+  Stream<Food> get foodData {
+    return foodCollection.doc(itemSeq).snapshots().map(_foodFromSnapshot);
   }
 
   /* User */
@@ -204,56 +172,56 @@ class DatabaseService {
 
   /* Saved List */
   //drug list from snapshot
-  List<SavedFood> _savedDrugListFromSnapshot(QuerySnapshot snapshot) {
-    return snapshot.docs.map((doc) {
-      return SavedFood(
-        itemName: doc.data()['ITEM_NAME'] ?? '',
-        itemSeq: doc.data()['ITEM_SEQ'] ?? '',
-        category: doc.data()['PRDUCT_TYPE'] ?? '카테고리 없음',
-        expiration: doc.data()['expiration'] ?? '',
-        etcOtcCode: doc.data()['etcOtcCode'] ?? '',
-      );
-    }).toList();
-  }
+      List<SavedFood> _savedFoodListFromSnapshot(QuerySnapshot snapshot) {
+        return snapshot.docs.map((doc) {
+          return SavedFood(
+            itemName: doc.data()['ITEM_NAME'] ?? '',
+            itemSeq: doc.data()['ITEM_SEQ'] ?? '',
+            category: doc.data()['RANK_CATEGORY'] ?? '카테고리 없음',
+            expiration: doc.data()['expiration'] ?? '',
+            //etcOtcCode: doc.data()['etcOtcCode'] ?? '',
+          );
+        }).toList();
+      }
 
   //for search from User drugs
-  Stream<List<SavedFood>> setForSearchFromUser(String searchVal, int limit) {
-    //print('### uid is $uid');
-    Query drugFromUserQuery = FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .collection('savedList');
+  //     Stream<List<SavedFood>> setForSearchFromUser(String searchVal, int limit) {
+  //       //print('### uid is $uid');
+  //       Query drugFromUserQuery = FirebaseFirestore.instance
+  //           .collection('users')
+  //           .doc(uid)
+  //           .collection('savedList');
+  //
+  //       drugFromUserQuery = drugFromUserQuery
+  //           .where('searchNameList', arrayContains: searchVal)
+  //           .orderBy('ITEM_NAME', descending: false)
+  //           .limit(limit);
+  //
+  //       drugsFromUserSnapshots =
+  //           drugFromUserQuery.snapshots().map(_savedDrugListFromSnapshot);
+  //
+  //       return drugsFromUserSnapshots;
+  //     }
 
-    drugFromUserQuery = drugFromUserQuery
-        .where('searchNameList', arrayContains: searchVal)
-        .orderBy('ITEM_NAME', descending: false)
-        .limit(limit);
-
-    drugsFromUserSnapshots =
-        drugFromUserQuery.snapshots().map(_savedDrugListFromSnapshot);
-
-    return drugsFromUserSnapshots;
-  }
-
-  Future<void> deleteSavedDrugData(String drugItemSeq) async {
+  Future<void> deleteSavedFoodData(String foodItemSeq) async {
     return await userCollection
         .doc(uid)
         .collection('savedList')
-        .doc(drugItemSeq)
+        .doc(foodItemSeq)
         .delete();
   }
 
   //get drug list stream
-  Stream<List<SavedFood>> get savedDrugs {
+  Stream<List<SavedFood>> get savedFoods {
     return userCollection
         .doc(uid)
         .collection('savedList')
         .orderBy('savedTime', descending: true)
         .snapshots()
-        .map(_savedDrugListFromSnapshot);
+        .map(_savedFoodListFromSnapshot);
   }
 
-  Future<void> addSavedList(itemName, itemSeq, category, etcOtcCode, expiration,
+  Future<void> addSavedList(itemName, itemSeq, etcOtcCode, expiration,
       searchNameList) async {
     return await userCollection
         .doc(uid)
@@ -262,7 +230,6 @@ class DatabaseService {
         .set({
       'ITEM_NAME': itemName ?? '',
       'ITEM_SEQ': itemSeq ?? '',
-      //'PRDUCT_TYPE': category ?? '카테고리 없음',
       'etcOtcCode': etcOtcCode ?? '',
       'expiration': expiration ?? '',
       'searchNameList': searchNameList ?? [],
@@ -308,20 +275,20 @@ class DatabaseService {
         .map(_privacyFromSnapshot);
   }
 
-  // get privacy stream
+  // get TotalRating stream
   Future<num> getTotalRating() async {
-    DocumentSnapshot ds = await drugCollection.doc(itemSeq).get();
+    DocumentSnapshot ds = await foodCollection.doc(itemSeq).get();
     return ds.data()["totalRating"];
   }
 
-  Future<String> getCategoryOfDrug() async {
-    DocumentSnapshot snap = await drugCollection.doc(itemSeq).get();
-    String categoryName = snap.data()["PRDUCT_TYPE"] ?? '카테고리 없음';
+  Future<String> getCategoryOfFood() async {
+    DocumentSnapshot snap = await foodCollection.doc(itemSeq).get();
+    String categoryName = snap.data()["RANK_CATEGORY"] ?? '카테고리 없음';
     return categoryName;
   }
 
   Future<void> updateTotalRating(num rating, num length) async {
-    return await drugCollection.doc(itemSeq).update({
+    return await foodCollection.doc(itemSeq).update({
       'totalRating': rating,
       'numOfReviews': length,
     });
@@ -356,7 +323,7 @@ class DatabaseService {
 
   Future<String> itemSeqFromBarcode(barcode) async {
     var result =
-    await drugCollection.where('BAR_CODE', isEqualTo: barcode).get();
+    await foodCollection.where('BAR_CODE', isEqualTo: barcode).get();
     var data;
 
     if (result.docs.isEmpty) {
