@@ -1,10 +1,15 @@
-import 'package:camera/camera.dart';
+//import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 //import 'package:an_muk_so/camera/camera_page.dart';
 import 'package:an_muk_so/home/home.dart';
 import 'package:an_muk_so/ranking/ranking.dart';
 import 'package:an_muk_so/shared/appbar.dart';
 import 'package:an_muk_so/theme/colors.dart';
+
+import 'dart:async';
+import 'package:flutter/services.dart';
+//import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
 
 class BottomBar extends StatefulWidget {
   @override
@@ -13,6 +18,41 @@ class BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
+
+  //barcode 숫자를 알기 위함
+  String _scanBarcode = 'Unknown';
+
+  //barcode init start
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  //scaning barcode start
+/*
+  Future<void> scanBarcodeNormal() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+        //바코드 화면에 보여질 parameter들
+          '#ff6666', '취소', true, ScanMode.BARCODE);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+    });
+  }
+  //scaning barcode system done
+*/
 
   final List<Widget> _widgetOptions = [
     HomePage(),
@@ -142,6 +182,10 @@ class _BottomBarState extends State<BottomBar> {
             padding: const EdgeInsets.only(top: 5.0),
             child: MaterialButton(
               onPressed: () async {
+               // scanBarcodeNormal();
+
+
+                /*
                 // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
                 final cameras = await availableCameras();
 
@@ -159,6 +203,7 @@ class _BottomBarState extends State<BottomBar> {
                 //     ),
                 //   ),
                 // );
+                */
               },
               child: Row(
                 children: <Widget>[
@@ -173,53 +218,6 @@ class _BottomBarState extends State<BottomBar> {
                     child: Center(
                       child: Text(
                         "바코드 인식",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1
-                            .copyWith(color: gray900),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5.0),
-            child: MaterialButton(
-              onPressed: () async {
-                // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
-                final cameras = await availableCameras();
-
-                // 이용가능한 카메라 목록에서 특정 카메라를 얻습니다.
-                final firstCamera = cameras.first;
-
-                Navigator.pop(context);
-
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => CameraPage(
-                //       camera: firstCamera,
-                //       initial: 1,
-                //     ),
-                //   ),
-                // );
-              },
-              child: Row(
-                children: <Widget>[
-                  SizedBox(height: 10),
-                  SizedBox(
-                    height: 24,
-                    width: 24,
-                    child: Image.asset('assets/icons/case_icon_grey.png'),
-                  ),
-                  SizedBox(width: 15),
-                  Container(
-                    child: Center(
-                      child: Text(
-                        "케이스 인식",
                         style: Theme.of(context)
                             .textTheme
                             .bodyText1
