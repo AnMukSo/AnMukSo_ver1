@@ -36,7 +36,7 @@ class Food {
 class SavedFood {
   final String itemName;
   final String itemSeq;
-  final String category;
+  final String rankCategory;
   final String expiration;
   final String etcOtcCode;
   final List searchNameList;
@@ -45,7 +45,7 @@ class SavedFood {
   SavedFood({
     this.itemName,
     this.itemSeq,
-    this.category,
+    this.rankCategory,
     this.expiration,
     this.etcOtcCode,
     this.searchNameList,
