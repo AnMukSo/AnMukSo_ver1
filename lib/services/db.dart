@@ -11,13 +11,13 @@ class DatabaseService {
   //다은 카테고리 추가
   DatabaseService({this.uid, this.itemSeq, this.categoryName, Itemseq});
 
-  /* Drug List */
+  /* Food List */
   // collection reference
   final CollectionReference foodCollection =
   FirebaseFirestore.instance.collection('Foods');
   Query foodQuery = FirebaseFirestore.instance.collection('Foods');
 
-  //drugSnapshot 값 get이랑 set에서 해주기
+  //foodSnapshot 값 get이랑 set에서 해주기
   Stream<List<Food>> foodsSnapshots;
   Stream<List<SavedFood>> foodsFromUserSnapshots;
 
@@ -35,7 +35,7 @@ class DatabaseService {
 
 
 
-  //for search from User drugs
+  //for search from User Foods
   Stream<List<Food>> setForSearchFromAllAfterRemainStartAt(
       String searchVal, int limit) {
     foodQuery = foodQuery
@@ -60,7 +60,7 @@ class DatabaseService {
     return foodsSnapshots;
   }
 
-  //drug list from snapshot
+  //food list from snapshot
   List<Food> _foodListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Food(
@@ -79,8 +79,8 @@ class DatabaseService {
     }).toList();
   }
 
-  /* Drug */
-  // drug data from snapshots
+  /* Food */
+  // food data from snapshots
   Food _foodFromSnapshot(DocumentSnapshot snapshot) {
     return Food(
       barCode: snapshot.data()['BAR_CODE'] ?? '',
@@ -121,9 +121,9 @@ class DatabaseService {
       sex: snapshot.data()['sex'] ?? '',
       nickname: snapshot.data()['nickname'] ?? '',
       birthYear: snapshot.data()['birthYear'] ?? '',
-      isPregnant: snapshot.data()['isPregnant'] ?? false,
-      keywordList: snapshot.data()['keywordList'] ?? [],
-      selfKeywordList: snapshot.data()['selfKeywordList'] ?? [],
+      //isPregnant: snapshot.data()['isPregnant'] ?? false,
+      //keywordList: snapshot.data()['keywordList'] ?? [],
+      //selfKeywordList: snapshot.data()['selfKeywordList'] ?? [],
       favoriteList: snapshot.data()['favoriteList'] ?? [],
       searchList: snapshot.data()['searchList'] ?? [],
     );
@@ -171,37 +171,37 @@ class DatabaseService {
   }
 
   /* Saved List */
-  //drug list from snapshot
+  //food list from snapshot
       List<SavedFood> _savedFoodListFromSnapshot(QuerySnapshot snapshot) {
         return snapshot.docs.map((doc) {
           return SavedFood(
             itemName: doc.data()['ITEM_NAME'] ?? '',
             itemSeq: doc.data()['ITEM_SEQ'] ?? '',
-            category: doc.data()['RANK_CATEGORY'] ?? '카테고리 없음',
+            rankCategory: doc.data()['RANK_CATEGORY'] ?? '카테고리 없음',
             expiration: doc.data()['expiration'] ?? '',
             //etcOtcCode: doc.data()['etcOtcCode'] ?? '',
           );
         }).toList();
       }
 
-  //for search from User drugs
-  //     Stream<List<SavedFood>> setForSearchFromUser(String searchVal, int limit) {
-  //       //print('### uid is $uid');
-  //       Query drugFromUserQuery = FirebaseFirestore.instance
-  //           .collection('users')
-  //           .doc(uid)
-  //           .collection('savedList');
-  //
-  //       drugFromUserQuery = drugFromUserQuery
-  //           .where('searchNameList', arrayContains: searchVal)
-  //           .orderBy('ITEM_NAME', descending: false)
-  //           .limit(limit);
-  //
-  //       drugsFromUserSnapshots =
-  //           drugFromUserQuery.snapshots().map(_savedDrugListFromSnapshot);
-  //
-  //       return drugsFromUserSnapshots;
-  //     }
+  //for search from User foods
+      Stream<List<SavedFood>> setForSearchFromUser(String searchVal, int limit) {
+        //print('### uid is $uid');
+        Query foodFromUserQuery = FirebaseFirestore.instance
+            .collection('users')
+            .doc(uid)
+            .collection('savedList');
+
+        foodFromUserQuery = foodFromUserQuery
+            .where('searchNameList', arrayContains: searchVal)
+            .orderBy('ITEM_NAME', descending: false)
+            .limit(limit);
+
+        foodsFromUserSnapshots =
+            foodFromUserQuery.snapshots().map(_savedFoodListFromSnapshot);
+
+        return foodsFromUserSnapshots;
+      }
 
   Future<void> deleteSavedFoodData(String foodItemSeq) async {
     return await userCollection
@@ -211,7 +211,7 @@ class DatabaseService {
         .delete();
   }
 
-  //get drug list stream
+  //get food list stream
   Stream<List<SavedFood>> get savedFoods {
     return userCollection
         .doc(uid)
@@ -221,7 +221,7 @@ class DatabaseService {
         .map(_savedFoodListFromSnapshot);
   }
 
-  Future<void> addSavedList(itemName, itemSeq, etcOtcCode, expiration,
+  Future<void> addSavedList(itemName, itemSeq, rankCategory, expiration,
       searchNameList) async {
     return await userCollection
         .doc(uid)
@@ -230,7 +230,7 @@ class DatabaseService {
         .set({
       'ITEM_NAME': itemName ?? '',
       'ITEM_SEQ': itemSeq ?? '',
-      'etcOtcCode': etcOtcCode ?? '',
+      'RANK_CATEGORY': rankCategory ?? '',
       'expiration': expiration ?? '',
       'searchNameList': searchNameList ?? [],
       'savedTime': DateTime.now()
@@ -309,15 +309,15 @@ class DatabaseService {
     return result.docs.isEmpty;
   }
 
-  Future<void> removeFromFavoriteList(String drugItemSeq) async {
+  Future<void> removeFromFavoriteList(String foodItemSeq) async {
     return await userCollection.doc(uid).update({
-      'favoriteList': FieldValue.arrayRemove([drugItemSeq]),
+      'favoriteList': FieldValue.arrayRemove([foodItemSeq]),
     });
   }
 
-  Future<void> addToFavoriteList(String drugItemSeq) async {
+  Future<void> addToFavoriteList(String foodItemSeq) async {
     return await userCollection.doc(uid).update({
-      'favoriteList': FieldValue.arrayUnion([drugItemSeq]),
+      'favoriteList': FieldValue.arrayUnion([foodItemSeq]),
     });
   }
 
