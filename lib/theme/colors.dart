@@ -15,7 +15,9 @@ const primary700 = Color(0xFF027B6D);
 const primary600_bold_text = Color(0xFF00A48A); //진한 text
 const primary500_light_text = Color(0xFF00B39C); //연한 text
 const primary400_line = Color(0xFF00C2AE);
-const primary300_main = Color(0xFF66D5C6);
+//const primary300_main = Color(0xFF66D5C6);
+const primary300_main = Color(0xFF1EE9E9); //안먹소 색
+
 const primary200 = Color(0xFF85F2E4);
 const primary100 = Color(0xFFA7E5DC);
 const primary50 = Color(0xFFDCF5F2);
