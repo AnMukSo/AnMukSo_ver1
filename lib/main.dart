@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-//import 'package:an_muk_so/home/search_screen.dart';
+import 'package:an_muk_so/search/search.dart';
 import 'package:an_muk_so/initial/1_policy_agree.dart';
 import 'package:an_muk_so/initial/2_get_privacy.dart';
 import 'package:an_muk_so/services/auth.dart';
@@ -36,10 +36,9 @@ class MyApp extends StatelessWidget {
             '/policy_agree': (context) => PolicyAgreePage(),
             '/get_privacy': (context) => GetPrivacyPage(),
             '/home': (context) => HomePage(),
-            // '/camera': (context) => CameraPage(),
             '/ranking': (context) => RankingPage(),
             '/bottom_bar': (context) => BottomBar(),
-            //'/search': (context) => SearchScreen(),
+            '/search': (context) => SearchScreen(),
           },
           theme: _AMSTheme),
     );
