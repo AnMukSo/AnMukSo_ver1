@@ -1,4 +1,7 @@
 //import 'package:camera/camera.dart';
+import 'package:an_muk_so/review/food_info.dart';
+import 'package:an_muk_so/services/db.dart';
+import 'package:an_muk_so/shared/dialog.dart';
 import 'package:flutter/material.dart';
 //import 'package:an_muk_so/camera/camera_page.dart';
 import 'package:an_muk_so/home/home.dart';
@@ -8,7 +11,10 @@ import 'package:an_muk_so/theme/colors.dart';
 
 import 'dart:async';
 import 'package:flutter/services.dart';
-//import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+
+import 'camera/no_result.dart';
+import 'cart/cart_page.dart';
 
 
 class BottomBar extends StatefulWidget {
@@ -29,17 +35,54 @@ class _BottomBarState extends State<BottomBar> {
   }
 
   //scaning barcode start
-/*
+
   Future<void> scanBarcodeNormal() async {
-    String barcodeScanRes;
+    String barcodeNum;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+      barcodeNum = await FlutterBarcodeScanner.scanBarcode(
         //바코드 화면에 보여질 parameter들
           '#ff6666', '취소', true, ScanMode.BARCODE);
-      print(barcodeScanRes);
+      print(barcodeNum);
+      if (barcodeNum == null) {
+        AMSDialog(
+            context: context,
+            bodyString: '바코드 인식이 어렵습니다\n다시 촬영해주세요',
+            leftButtonName: '취소',
+            leftOnPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          //HomePage()));
+                        CartPage()));
+
+            },
+            rightButtonName: '확인',
+            rightOnPressed: () {
+              Navigator.pop(context);
+            }).showWarning();
+      } else {
+        var data = await DatabaseService()
+            .itemSeqFromBarcode(barcodeNum);
+
+        //Navigator.pop(context);
+        //Navigator.pop(context);
+        if (data != null) {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      ReviewPage(data)));
+        } else {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NoResult()));
+        }
+      }
     } on PlatformException {
-      barcodeScanRes = 'Failed to get platform version.';
+      barcodeNum = 'Failed to get platform version.';
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -48,22 +91,25 @@ class _BottomBarState extends State<BottomBar> {
     if (!mounted) return;
 
     setState(() {
-      _scanBarcode = barcodeScanRes;
+      _scanBarcode = barcodeNum;
     });
   }
   //scaning barcode system done
-*/
+
 
   final List<Widget> _widgetOptions = [
+    //HomePage(),
+    CartPage(),
     HomePage(),
-    Container(),
     RankingPage(),
   ];
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _selectedIndex != 2 ? AMSAppBar('home') : AMSAppBar('카테고리'),
+      //appBar: _selectedIndex != 2 ? AMSAppBar('home') : AMSAppBar('카테고리'),
+      appBar: _selectedIndex != 1 ? _selectedIndex != 0 ? AMSAppBar('전체 상품'):  AMSAppBar('장바구니') : AMSAppBar('home'),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomAppBar(
         child: Row(
@@ -82,7 +128,19 @@ class _BottomBarState extends State<BottomBar> {
                     _selectedIndex = 0;
                   });
                 }),
-            SizedBox(width: 70, height: 36),
+            //SizedBox(width: 70, height: 36),
+            IconButton(
+                icon: Icon(Icons.home),
+                iconSize: 50,
+                color: _selectedIndex == 1
+                    ? Colors.greenAccent
+                    : gray300_inactivated,
+                onPressed: () {
+                  setState(() {
+                    _selectedIndex = 1;
+                  });
+                }),
+
             IconButton(
                 icon: ImageIcon(
                   AssetImage('assets/icons/An_Category.png'),
@@ -182,28 +240,8 @@ class _BottomBarState extends State<BottomBar> {
             padding: const EdgeInsets.only(top: 5.0),
             child: MaterialButton(
               onPressed: () async {
-               // scanBarcodeNormal();
+                scanBarcodeNormal();
 
-
-                /*
-                // 디바이스에서 이용가능한 카메라 목록을 받아옵니다.
-                final cameras = await availableCameras();
-
-                // 이용가능한 카메라 목록에서 특정 카메라를 얻습니다.
-                final firstCamera = cameras.first;
-
-                Navigator.pop(context);
-
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => CameraPage(
-                //       camera: firstCamera,
-                //       initial: 0,
-                //     ),
-                //   ),
-                // );
-                */
               },
               child: Row(
                 children: <Widget>[
@@ -233,10 +271,10 @@ class _BottomBarState extends State<BottomBar> {
           Padding(
             padding: const EdgeInsets.only(top: 5.0),
             child: MaterialButton(
-              // onPressed: () {
-              //   Navigator.pop(context);
-              //   Navigator.pushNamed(context, '/search');
-              // },
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamed(context, '/search');
+              },
               child: Row(
                 children: <Widget>[
                   SizedBox(height: 10),
