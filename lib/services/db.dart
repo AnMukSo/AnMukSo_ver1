@@ -370,7 +370,7 @@ class DatabaseService {
   Future<void> createInquiry(index, title, body, from) async {
     String type;
     if (index == 1)
-      type = '1. 의약품 정보 문의 및 요청';
+      type = '1. 상품 정보 문의 및 요청';
     else if (index == 2)
       type = '2. 서비스 불편, 오류 제보';
     else if (index == 3)
