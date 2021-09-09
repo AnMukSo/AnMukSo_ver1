@@ -12,11 +12,23 @@ import 'package:an_muk_so/models/user.dart';
 import 'package:an_muk_so/theme/colors.dart';
 import 'package:an_muk_so/main.dart';
 
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 class _HomePageState extends State<HomePage> {
+
+  YoutubePlayerController _controller = YoutubePlayerController(
+      initialVideoId: 'MaRpEllkmPs', //여기에 안먹소 유투브 링크 주소 넣기
+      flags: YoutubePlayerFlags(
+          autoPlay: false,
+          mute: false
+      )
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,13 +138,11 @@ class _HomePageState extends State<HomePage> {
                     style: Theme.of(context).textTheme.headline5,),
                   ),
                 SizedBox(
-                  child: Container(
-                      //alignment: Alignment.center,
-                      width: double.infinity - 32,
-                      height: 230,
-                      child: Image.asset('assets/snacks/tasteOfNature.png')
-                    // AssetImage('assets/snacks/octopus.png'),
-                  ),
+                  child:    YoutubePlayer(
+                    controller: _controller,
+                    showVideoProgressIndicator: true,
+                    progressIndicatorColor: primary300_main,
+                  )
                 ),
                 Column(
                   children: [
