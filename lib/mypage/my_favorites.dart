@@ -58,7 +58,7 @@ class _MyFavoritesState extends State<MyFavorites> {
                                     Container(
                                       height: 10,
                                     ),
-                                    Text("아직 찜한 약이 없어요")
+                                    Text("아직 찜한 상품이 없어요")
                                   ],
                                 ))
                             : ListView.builder(
@@ -138,7 +138,7 @@ class _MyFavoritesState extends State<MyFavorites> {
                                 Container(
                                   width:
                                       MediaQuery.of(context).size.width - 180,
-                                  child: Text(_shortenName(food.itemName),
+                                  child: Text(food.itemName,
                                       overflow: TextOverflow.ellipsis,
                                       style: Theme.of(context)
                                           .textTheme

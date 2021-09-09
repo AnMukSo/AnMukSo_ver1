@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-//import 'package:an_muk_so/models/review.dart';
+import 'package:an_muk_so/models/review.dart';
 
 import 'package:an_muk_so/mypage/1_edit_privacy.dart';
-import 'package:an_muk_so/mypage/2_edit_health.dart';
 import 'package:an_muk_so/mypage/3_notice.dart';
 import 'package:an_muk_so/mypage/4_inquiry.dart';
 import 'package:an_muk_so/mypage/5_policy_terms.dart';
 import 'package:an_muk_so/mypage/6_policy_privacy.dart';
 import 'package:an_muk_so/mypage/7_others.dart';
-// import 'package:an_muk_so/mypage/my_reviews.dart';
-// import 'package:an_muk_so/mypage/my_favorites.dart';
+import 'package:an_muk_so/mypage/my_reviews.dart';
+import 'package:an_muk_so/mypage/my_favorites.dart';
 
 import 'package:an_muk_so/models/user.dart';
 import 'package:an_muk_so/services/auth.dart';
@@ -155,7 +154,7 @@ class _MyPageState extends State<MyPage> {
               ],
             ),
             //TODO: 이부분은 리뷰랑 찜 부분 됐을 때 하기!!
-            /*
+
             SizedBox(
               height: 20,
             ),
@@ -207,7 +206,6 @@ class _MyPageState extends State<MyPage> {
                 ],
               ),
             )
-            */
           ],
         ),
       ),
