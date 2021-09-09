@@ -23,7 +23,7 @@ class BottomBar extends StatefulWidget {
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedIndex = 0;
+  int _selectedIndex = 1;
 
   //barcode 숫자를 알기 위함
   String _scanBarcode = 'Unknown';
