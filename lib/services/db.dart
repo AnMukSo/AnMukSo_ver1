@@ -74,7 +74,9 @@ class DatabaseService {
           totalRating: doc.data()['totalRating'] ?? 0,
           numOfReviews: doc.data()['numOfReviews'] ?? 0,
           searchNameList: doc.data()['searchNameList'] ?? [],
-          rankCategory: doc.data()['RANK_CATEGORY'] ?? ''
+          rankCategory: doc.data()['RANK_CATEGORY'] ?? '',
+          itemCountry: doc.data()['ITEM_COUNTRY'] ?? '',
+
       );
     }).toList();
   }
@@ -98,7 +100,8 @@ class DatabaseService {
       totalRating: snapshot.data()['totalRating'] ?? 0,
 
       numOfReviews: snapshot.data()['numOfReviews'] ?? 0,
-        rankCategory: snapshot.data()['RANK_CATEGORY'] ?? ''
+        rankCategory: snapshot.data()['RANK_CATEGORY'] ?? '',
+      itemCountry: snapshot.data()['ITEM_COUNTRY'] ?? '',
 
     );
   }
