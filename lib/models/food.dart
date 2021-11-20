@@ -7,7 +7,8 @@ class Food {
 
   final String itemSeq; //상품 고유 번호
 //  final String materialName; // 원료성분??
-  final List warningData; //주의사항
+  final String warningData; //주의사항
+  final String itemCountry; //원산지
 
   final num totalRating; //별점
   final num numOfReviews; //리뷰 개수
@@ -25,6 +26,8 @@ class Food {
         this.itemSeq,
       //  this.materialName,
         this.warningData,
+        this.itemCountry, //원산지
+
         this.totalRating,
         this.numOfReviews,
         this.searchNameList,
