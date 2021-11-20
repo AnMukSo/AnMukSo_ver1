@@ -261,6 +261,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                   ),
                                   SliverToBoxAdapter(
                                       child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(height: 10),
                                       _underInfo(context, food, userData),
@@ -546,7 +547,6 @@ class _ReviewPageState extends State<ReviewPage> {
 
   /* Under Information */
   Widget _underInfo(BuildContext context, Food food, UserData userData) {
-
     return Padding(
       key: _key3,
       padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -560,12 +560,30 @@ class _ReviewPageState extends State<ReviewPage> {
                         color: gray750_activated,
                       )),
             ),
-            _foodDocInfo(context, food.itemSeq, 'WARNING'),
+            Text(food.warningData,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2
+                    .copyWith(color: gray600, height: 1.6)),
             SizedBox(height: 22),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text('원산지',
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: gray750_activated,
+                  )),
+            ),
+            Text(food.itemCountry,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2
+                    .copyWith(color: gray600, height: 1.6)),
+            SizedBox(height: 22),
+
           ]),
     );
   }
-
+/*
   Widget _foodDocInfo(BuildContext context, String foodItemSeq, String type) {
     return StreamBuilder<Food>(
         stream: DatabaseService(itemSeq: foodItemSeq).foodData,
@@ -573,18 +591,23 @@ class _ReviewPageState extends State<ReviewPage> {
           if (snapshot.hasData) {
             Food food = snapshot.data;
             entpName = food.entpName;
-            infoNB = food.warningData;
+            //infoNB = food.warningData;
             if (type == 'WARNING') {
-              return ListView.builder(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                  physics: const ClampingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: food.warningData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Text(
-                      food.warningData[index].toString(),
-                    );
-                  });
+              return       Text(food.warningData,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      .copyWith(color: gray600, height: 1.6));
+              // return ListView.builder(
+              //     padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+              //     physics: const ClampingScrollPhysics(),
+              //     shrinkWrap: true,
+              //     itemCount: food.warningData.length,
+              //     itemBuilder: (BuildContext context, int index) {
+              //       return Text(
+              //         food.warningData[index].toString(),
+              //       );
+              //     });
             }  else {
               return Container();
             }
@@ -593,7 +616,7 @@ class _ReviewPageState extends State<ReviewPage> {
           }
         });
   }
-
+*/
   Widget _totalRating() {
     return Column(
       children: [
