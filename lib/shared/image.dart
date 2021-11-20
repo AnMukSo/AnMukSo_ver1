@@ -41,7 +41,7 @@ class _FoodImageState extends State<FoodImage> {
 Future<String> _downloadURLExample(String itemSeq) async {
   try {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
-        .ref('Image/$itemSeq.png')
+        .ref('Image/$itemSeq.jpeg')
         .getDownloadURL();
 
 
