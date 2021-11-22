@@ -1,3 +1,8 @@
+import 'package:an_muk_so/models/food.dart';
+import 'package:an_muk_so/mypage/3_notice.dart';
+import 'package:an_muk_so/review/food_info.dart';
+import 'package:an_muk_so/shared/image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -21,16 +26,11 @@ class HomePage extends StatefulWidget {
 }
 class _HomePageState extends State<HomePage> {
 
-  YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId: 'MaRpEllkmPs', //여기에 안먹소 유투브 링크 주소 넣기
-      flags: YoutubePlayerFlags(
-          autoPlay: false,
-          mute: false
-      )
-  );
+  String videoID = 'WUrEimln4as';// 여기는 원래 두는 코드로 두고 업데이트 되는 걸로 확인 해보
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       //배경 색 지정 완료
       backgroundColor: Colors.white,
@@ -56,17 +56,26 @@ class _HomePageState extends State<HomePage> {
 
                     ),
                     //TODO: 이부분에 공지 제목 DB필요함 글씨가 몇자 이상일 때...으로 표현 되는 것도 감안해야한다.
-                    SizedBox(
-                      child: Container(
-                        alignment: Alignment.centerLeft,
-                        width: double.infinity - 32,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 2)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: Text('2021년 8월 아토피 캠프 공지 입니다.',
-                              style: Theme.of(context).textTheme.headline5,),
+                    GestureDetector(
+                      onTap: () => {
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NoticePage(),
+                        ),
+                      ),},
+                      child: SizedBox(
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          width: double.infinity - 32,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Colors.black, width: 2)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Text('2021년 8월 아토피 캠프 공지 입니다.',
+                                style: Theme.of(context).textTheme.headline5,),
+                          ),
                         ),
                       ),
                     ),
@@ -85,50 +94,11 @@ class _HomePageState extends State<HomePage> {
 
                 ),
                 //새로운 제품 DB에서 불러올 것들
-                GridView.builder(
-                    physics: new NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 150,
-                        childAspectRatio: 1 / 1.2,
-                        crossAxisSpacing: 0,
-                        mainAxisSpacing: 0),
-                    itemCount: entries.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return Column(
-                        children: [
-                          GestureDetector(
-                            child: Container(
-                              alignment: Alignment.center,
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: SizedBox(
-                                        width: 110,
-                                        height: 110,
-                                        child: Image.asset(entries2[index])),
-                                  ),
-                                  Text(entries[index],
-                                    style: Theme.of(context).textTheme.subtitle2,
-                                      ),
-                                ],
-                              ),
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  ),
-                            ),
-                            onTap: () {
-                             print('새로운 제품 ${entries[index]}');
-                            },
-                          ),
-                        ],
-                      );
-                    }),
+                _newList(context),
                 //
                 Padding(
                   padding: EdgeInsets.only(top: 30),
                 ),
-                //TODO: 유투브 링크 타고 갈 수 있도록 화면 보여주는 것과, 그 유투브로 이동할 수 있게끔 하는 것!!
                 Container(
                   height: 25,
                   alignment: Alignment.centerLeft,
@@ -137,13 +107,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text('안먹소 먹거리 정보 채널 ( YOUTUBE )',
                     style: Theme.of(context).textTheme.headline5,),
                   ),
-                SizedBox(
-                  child:    YoutubePlayer(
-                    controller: _controller,
-                    showVideoProgressIndicator: true,
-                    progressIndicatorColor: primary300_main,
-                  )
-                ),
+                _getVideoId(context),
                 Column(
                   children: [
                     Container(
@@ -153,21 +117,12 @@ class _HomePageState extends State<HomePage> {
                       child: Text('후원 계좌',
                           style: Theme.of(context).textTheme.headline5,),
                     ),
-                    SizedBox(
-                      child: Container(
-                        alignment: Alignment.center,
-                        width: double.infinity - 32,
-                        height: 76,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            border: Border.all(color: Colors.black, width: 2)),
-                        child: Text('우리은행 1002-101-21-2229 안전한 먹거리 소비자 연합\n'
-                            '    카카오 1242-445-6446 안전한 먹거리 소비자 연합',
-                        style: Theme.of(context).textTheme.subtitle1,),
-                      ),
-                    ),
+
                   ],
                 ),
+                _bankBox(context, 'bank1'),
+                SizedBox(height: 10,),
+                _bankBox(context, 'bank2'),
                 Container(
                   padding: EdgeInsets.fromLTRB(0, 100, 0.0, 0),
                   color: Colors.white,
@@ -181,25 +136,152 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget _getVideoId(BuildContext context){
+    return StreamBuilder<DocumentSnapshot>(
+      stream: FirebaseFirestore.instance.collection('VideoId').doc('id').snapshots(),
+      builder: (context, snapshot){
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        videoID = snapshot.data.data()['id'];
+        print('videoID == $videoID');
+
+        YoutubePlayerController _controller = YoutubePlayerController(
+            initialVideoId: videoID, //여기에 안먹소 유투브 링크 주소 넣기
+            flags: YoutubePlayerFlags(
+                autoPlay: false,
+                mute: false
+            )
+        );
+        //return Container(child: Text(videoID),); //(child: Text(snapshot.data.data()['id']),);
+       return SizedBox(
+            child:    YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            progressIndicatorColor: primary300_main,
+        ));
+      },
+    );
+  }
+
+
+  Widget _bankBox(BuildContext context, bankNum){
+    return StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance.collection('Bank').doc(bankNum).snapshots(),
+        builder: (context, snapshot){
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          String bank = snapshot.data.data()['bank'];
+          String account = snapshot.data.data()['account'];
+          String name = snapshot.data.data()['name'];
+
+
+          return SizedBox(
+          child: Container(
+            alignment: Alignment.center,
+            width: double.infinity - 32,
+            //\height: ,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: Colors.black, width: 2)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text('$bank $account \n $name' , style: Theme.of(context).textTheme.subtitle1,
+                      )
+                    ],
+                  )
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    );
+  }
+
+  Widget _newList(BuildContext context){
+
+
+    return StreamBuilder<List<NewFood>>(
+        stream: DatabaseService().listOfNewFoodData(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return _buildNewList(context, snapshot.data);
+        }
+    );
+  }
+
+  Widget _buildNewList(BuildContext context, List<NewFood> snapshot) {
+    int count = snapshot.length;
+
+    if (count == 0) {
+      return Container(child: Text("없음"),);
+    }
+
+    return GridView.builder(
+        physics: new NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 150,
+            childAspectRatio: 1 / 1.2,
+            crossAxisSpacing: 0,
+            mainAxisSpacing: 0),
+        itemCount: snapshot.length,
+        itemBuilder: (BuildContext ctx, index) {
+          return Column(
+            children: [
+              GestureDetector(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: SizedBox(
+                            width: 110,
+                            height: 110,
+                            child: Container(
+                                width: 88,
+                                child: FoodImage(foodItemSeq: snapshot[index].itemSeq)),
+
+                        ),
+                      ),
+                      Text(snapshot[index].itemName,
+                        style: Theme.of(context).textTheme.subtitle2,
+                      ),
+                    ],
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                ),
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ReviewPage(snapshot[index].itemSeq),
+                    ),
+                  ),
+                },
+              ),
+            ],
+          );
+        });
+
+  }
+
 }
-
-
-final entries = [
-  '농심 새우깡',
-  '농심 양파링',
-  '농심 포스틱',
-  '롯데 칙촉',
-  '오리온 초코송이',
-  '농심 자갈치',
-];
-//상품명 리스
-
-final entries2 = [
-  'assets/snacks/shrimp.png',
-  'assets/snacks/onionRing.png',
-  'assets/snacks/postick.png',
-  'assets/snacks/chickchock.png',
-  'assets/snacks/chocolate.png',
-  'assets/snacks/octopus.png',
-];
-//상품 사진 경로 리스트
