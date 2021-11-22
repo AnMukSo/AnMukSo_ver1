@@ -33,6 +33,13 @@ class DatabaseService {
     return foodsSnapshots;
   }
 
+  ///NEW FOOD list 추가하기 위해서 만드는 코드
+  // collection reference
+  final CollectionReference newFoodCollection =
+  FirebaseFirestore.instance.collection('Food'); //NewFood collection으로 바꾸기
+  Query newFoodQuery = FirebaseFirestore.instance.collection('Food');//NewFood collection으로 바꾸기
+  Stream<List<NewFood>> newFoodsSnapshots;
+
 
 
   //for search from User Foods
@@ -110,6 +117,26 @@ class DatabaseService {
   Stream<Food> get foodData {
     return foodCollection.doc(itemSeq).snapshots().map(_foodFromSnapshot);
   }
+
+  /* NEW Food list flow */
+  List<NewFood> _newFoodListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return NewFood(
+        itemName: doc.data()['ITEM_NAME'] ?? '',
+        itemSeq: doc.data()['ITEM_SEQ'] ?? '',
+        rankCategory: doc.data()['RANK_CATEGORY'] ?? '카테고리 없음',
+      );
+    }).toList();
+  }
+
+  // get new food doc stream
+
+  //get food list stream
+  Stream<List<NewFood>> listOfNewFoodData() {
+    newFoodsSnapshots = newFoodQuery.snapshots().map(_newFoodListFromSnapshot);
+    return newFoodsSnapshots;
+  }
+
 
   /* User */
   // collection reference
