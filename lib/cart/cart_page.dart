@@ -1518,7 +1518,7 @@ class _CartPageState extends State<CartPage> {
       Spacer(),
       Container(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 18.0),
+            padding: const EdgeInsets.only(bottom: 75.0),
             child: SizedBox(
                 height: 45,
                 child: Image(image: AssetImage('assets/images/bottom_msg_box.png'))),
