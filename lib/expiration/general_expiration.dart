@@ -124,6 +124,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            /*
             InkWell(
               child: Text(
                 '일반상품인가요?',
@@ -140,6 +141,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
                 });
               },
             ),
+            */
           ],
         ),
         SizedBox(height: 20),
@@ -153,7 +155,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '사용기한',
+          '구입 날',
           style: Theme.of(context).textTheme.subtitle1,
         ),
         SizedBox(
@@ -257,7 +259,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
           if (_isPast) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(
-                  '사용기한이 지났습니다. 다시 확인해주세요',
+                  '유통기한이 지났습니다. 다시 확인해주세요',
                   textAlign: TextAlign.center,
                 ),
                 shape: RoundedRectangleBorder(
