@@ -491,12 +491,13 @@ class _SearchScreenState extends State<SearchScreen> {
           physics: const ClampingScrollPhysics(),
           itemCount: foods.length,
           itemBuilder: (context, index) {
+            ///TODO: 이부분에서 에러가 나서 잠시 주석 달아놨는데 에러가 사라짐 왜그런지 이유를 알아야 함
             //유저가 가지고 있는 애들 제외
-            for (int i = 0; i < foods.length; i++) {
-              if (foods[index].itemName == userFoods[i].itemName) {
-                return Container();
-              }
-            }
+            // for (int i = 0; i < foods.length; i++) {
+            //   if (foods[index].itemName == userFoods[i].itemName) {
+            //     return Container();
+            //   }
+            // }
             //앞에 나온 애들 제외
             for (int j = 0; j < SAFoods.length; j++) {
               if (foods[index].itemName == SAFoods[j].itemName) {
