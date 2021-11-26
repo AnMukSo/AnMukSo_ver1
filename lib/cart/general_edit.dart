@@ -138,7 +138,7 @@ class _GeneralEditState extends State<GeneralEdit> {
             textAlign: TextAlign.center,
           ),
         ),
-        CategoryButton(str: food.category),
+        CategoryButton(str: food.rankCategory),
       ],
     );
   }
@@ -149,30 +149,6 @@ class _GeneralEditState extends State<GeneralEdit> {
         _pickDay(),
         SizedBox(height: 11),
         SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            InkWell(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(0, 8, 8, 8),
-                child: Text(
-                  '처방받은 약인가요?',
-                  style: TextStyle(
-                    color: primary500_light_text,
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.w400,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-              onTap: () {
-                setState(() {
-                  _isGeneral = false;
-                });
-              },
-            ),
-          ],
-        ),
         SizedBox(height: 10),
         _submitButton(context, user, drug, _pickedString, _pickedDateTime)
       ],

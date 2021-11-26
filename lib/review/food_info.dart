@@ -480,8 +480,8 @@ class _ReviewPageState extends State<ReviewPage> {
                                           child: Image.asset(
                                               'assets/icons/warning_icon_primary.png')),
                                       boldBodyString: '',
-                                      normalBodyString: '이미 저장한 약입니다',
-                                      topButtonName: '나의 약 보관함 바로가기',
+                                      normalBodyString: '이미 담은 상품입니다',
+                                      topButtonName: '나의 상품 보관함 바로가기',
                                       bottomButtonName: '확인',
                                       onPressedTop: () {
                                         Navigator.pop(context);
@@ -489,7 +489,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    BottomBar()));
+                                                    BottomBar(go:'0')));
                                       },
                                       onPressedBottom: () {
                                         Navigator.pop(context);
@@ -862,7 +862,7 @@ class _ReviewPageState extends State<ReviewPage> {
                       .bodyText1
                       .copyWith(color: gray700),
                   children: <TextSpan>[
-                    TextSpan(text: "해당 약에 대한 리뷰를\n이미 작성하셨습니다"),
+                    TextSpan(text: "해당 상품에 대한 리뷰를\n이미 작성하셨습니다"),
                   ],
                 ),
               ),

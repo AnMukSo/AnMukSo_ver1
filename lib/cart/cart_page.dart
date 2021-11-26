@@ -241,7 +241,8 @@ class _CartPageState extends State<CartPage> {
 
     final difference = expirationTime.difference(rightNowTime).inDays;
 
-
+// 이건  유통기한 계산하기위해 만든 코드인데 아마 안쓰일거 같아서 일단 킵해둠
+    /*
     //사용기한 7일 남음
     if (difference < 8 && difference > -1) {
       return GestureDetector(
@@ -271,14 +272,17 @@ class _CartPageState extends State<CartPage> {
                           padding: const EdgeInsets.only(right: 10.0),
                           child: SizedBox(
                             width: 15,
-                            child: Center(
-                              child: Text(index.toString(),
+                            child:
+                            Center(
+                              child:
+                              Text(index.toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle1
                                       .copyWith(
                                       color: gray600, fontSize: 11)),
                             ),
+
                           ),
                         ),
                         Container(
@@ -323,7 +327,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('까지 ',
+                                    Text('구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -449,7 +453,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('까지 ',
+                                    Text('구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -582,7 +586,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('까지 ',
+                                    Text('구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -710,7 +714,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('까지 ',
+                                    Text('구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -763,6 +767,7 @@ class _CartPageState extends State<CartPage> {
     }
     //사용기한 아직 넉넉함
     else
+      */
       return GestureDetector(
         onTap: () => {
           Navigator.push(
@@ -787,6 +792,7 @@ class _CartPageState extends State<CartPage> {
                     color: Colors.white,
                     child: Row(
                       children: [
+                        //원래 버전
                         Padding(
                           padding: const EdgeInsets.only(right: 10.0),
                           child: SizedBox(
@@ -797,7 +803,8 @@ class _CartPageState extends State<CartPage> {
                                       .textTheme
                                       .subtitle1
                                       .copyWith(
-                                      color: gray600, fontSize: 11)),
+                                      color: gray600, fontSize: 11)
+                                      ),
                             ),
                           ),
                         ),
@@ -845,7 +852,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('까지 ',
+                                    Text('구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -964,7 +971,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('까지 ',
+                                    Text('구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
