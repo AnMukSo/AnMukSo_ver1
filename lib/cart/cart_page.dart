@@ -1,5 +1,6 @@
 import 'package:an_muk_so/camera/no_result.dart';
 import 'package:an_muk_so/home/home.dart';
+import 'package:an_muk_so/shared/check_button.dart';
 import 'package:an_muk_so/shared/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -793,21 +794,22 @@ class _CartPageState extends State<CartPage> {
                     child: Row(
                       children: [
                         //원래 버전
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10.0),
-                          child: SizedBox(
-                            width: 15,
-                            child: Center(
-                              child: Text(index.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1
-                                      .copyWith(
-                                      color: gray600, fontSize: 11)
-                                      ),
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(right: 10.0),
+                        //   child: SizedBox(
+                        //     width: 15,
+                        //     child: Center(
+                        //       child: Text(index.toString(),
+                        //           style: Theme.of(context)
+                        //               .textTheme
+                        //               .subtitle1
+                        //               .copyWith(
+                        //               color: gray600, fontSize: 11)
+                        //               ),
+                        //     ),
+                        //   ),
+                        // ),
+                        CheckButton(index: index.toString()),
                         Container(
                             child: Container(
                                 width: 88,
@@ -852,7 +854,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('구입 ',
+                                    Text(' 구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -913,20 +915,21 @@ class _CartPageState extends State<CartPage> {
                     color: Colors.white,
                     child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10.0),
-                          child: SizedBox(
-                            width: 15,
-                            child: Center(
-                              child: Text(index.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .subtitle1
-                                      .copyWith(
-                                      color: gray600, fontSize: 11)),
-                            ),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(right: 10.0),
+                        //   child: SizedBox(
+                        //     width: 15,
+                        //     child: Center(
+                        //       child: Text(index.toString(),
+                        //           style: Theme.of(context)
+                        //               .textTheme
+                        //               .subtitle1
+                        //               .copyWith(
+                        //               color: gray600, fontSize: 11)),
+                        //     ),
+                        //   ),
+                        // ),
+                        CheckButton(index: index.toString()),
                         Container(
                             child: Container(
                                 width: 88,
@@ -971,7 +974,7 @@ class _CartPageState extends State<CartPage> {
                                             .copyWith(
                                             color: gray600,
                                             fontSize: 11)),
-                                    Text('구입 ',
+                                    Text(' 구입 ',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
