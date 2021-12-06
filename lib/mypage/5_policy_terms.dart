@@ -84,7 +84,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                               .headline6
                               .copyWith(color: primary600_bold_text),
                         ),
-                /*
+
                         ListView.builder(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             physics: const ClampingScrollPhysics(),
@@ -383,7 +383,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 19 조 (책임과 손해배상)\n',
+                          '\n\n제 19 조 (이용요금 및 환불정책)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -402,7 +402,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 20 조 (이용제한 등)\n',
+                          '\n\n제 20 조 (책임과 손해 배상)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -421,7 +421,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 21 조 (책임제한)\n',
+                          '\n\n제 21 조 (이용제한 등)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -440,7 +440,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 22 조 (회사의 면책)\n',
+                          '\n\n제 22 조 (책임 제한)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -459,7 +459,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 23 조 (준거법 및 재판관할))\n',
+                          '\n\n제 23 조 (회사의 면책)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -478,7 +478,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 24 조 (의약품 리뷰)\n',
+                          '\n\n제 24 조 (준거법 및 재판관할)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -497,7 +497,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 25 조 (약사의 한마디)\n',
+                          '\n\n제 25 조 (상품 리뷰)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -510,6 +510,25 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                             itemCount: privacy.list25.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Text(privacy.list25[index].toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      .copyWith(color: gray600, height: 1.6));
+                            }),
+                        Text(
+                          '\n\n제 26 조 (안먹소 검증단 평가)\n',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .copyWith(color: primary600_bold_text),
+                        ),
+                        ListView.builder(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: privacy.list26.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Text(privacy.list26[index].toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2
@@ -535,7 +554,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         SizedBox(height: 20)
-                */
+
                       ],
                     ),
                   );
@@ -551,59 +570,61 @@ class Terms {
   final List list0;
   final List list1;
   final List list2;
-  // final List list3;
-  // final List list4;
-  // final List list5;
-  // final List list6;
-  // final List list7;
-  // final List list8;
-  // final List list9;
-  // final List list10;
-  // final List list11;
-  // final List list12;
-  // final List list13;
-  // final List list14;
-  // final List list15;
-  // final List list16;
-  // final List list17;
-  // final List list18;
-  // final List list19;
-  // final List list20;
-  // final List list21;
-  // final List list22;
-  // final List list23;
-  // final List list24;
-  // final List list25;
-  // final List list999;
+  final List list3;
+  final List list4;
+  final List list5;
+  final List list6;
+  final List list7;
+  final List list8;
+  final List list9;
+  final List list10;
+  final List list11;
+  final List list12;
+  final List list13;
+  final List list14;
+  final List list15;
+  final List list16;
+  final List list17;
+  final List list18;
+  final List list19;
+  final List list20;
+  final List list21;
+  final List list22;
+  final List list23;
+  final List list24;
+  final List list25;
+  final List list26;
+  final List list999;
 
   Terms(
       {this.list0,
       this.list1,
       this.list2,
-      // this.list3,
-      // this.list4,
-      // this.list5,
-      // this.list6,
-      // this.list7,
-      // this.list8,
-      // this.list9,
-      // this.list10,
-      // this.list11,
-      // this.list12,
-      // this.list13,
-      // this.list14,
-      // this.list15,
-      // this.list16,
-      // this.list17,
-      // this.list18,
-      // this.list19,
-      // this.list20,
-      // this.list21,
-      // this.list22,
-      // this.list23,
-      // this.list24,
-      // this.list25,
-      // this.list999
+      this.list3,
+      this.list4,
+      this.list5,
+      this.list6,
+      this.list7,
+      this.list8,
+      this.list9,
+      this.list10,
+      this.list11,
+      this.list12,
+      this.list13,
+      this.list14,
+      this.list15,
+      this.list16,
+      this.list17,
+      this.list18,
+      this.list19,
+      this.list20,
+      this.list21,
+      this.list22,
+      this.list23,
+      this.list24,
+      this.list25,
+        this.list26,
+        this.list999
       });
 }
 
@@ -616,29 +637,30 @@ Future<Terms> getTerms() async {
     list0: ds.data()['0'] ?? '',
     list1: ds.data()['1'] ?? '',
     list2: ds.data()['2'] ?? '',
-    // list3: ds.data()['3'] ?? '',
-    // list4: ds.data()['4'] ?? '',
-    // list5: ds.data()['5'] ?? '',
-    // list6: ds.data()['6'] ?? '',
-    // list7: ds.data()['7'] ?? '',
-    // list8: ds.data()['8'] ?? '',
-    // list9: ds.data()['9'] ?? '',
-    // list10: ds.data()['10'] ?? '',
-    // list11: ds.data()['11'] ?? '',
-    // list12: ds.data()['12'] ?? '',
-    // list13: ds.data()['13'] ?? '',
-    // list14: ds.data()['14'] ?? '',
-    // list15: ds.data()['15'] ?? '',
-    // list16: ds.data()['16'] ?? '',
-    // list17: ds.data()['17'] ?? '',
-    // list18: ds.data()['18'] ?? '',
-    // list19: ds.data()['19'] ?? '',
-    // list20: ds.data()['20'] ?? '',
-    // list21: ds.data()['21'] ?? '',
-    // list22: ds.data()['22'] ?? '',
-    // list23: ds.data()['23'] ?? '',
-    // list24: ds.data()['24'] ?? '',
-    // list25: ds.data()['25'] ?? '',
-    // list999: ds.data()['999'] ?? '',
+    list3: ds.data()['3'] ?? '',
+    list4: ds.data()['4'] ?? '',
+    list5: ds.data()['5'] ?? '',
+    list6: ds.data()['6'] ?? '',
+    list7: ds.data()['7'] ?? '',
+    list8: ds.data()['8'] ?? '',
+    list9: ds.data()['9'] ?? '',
+    list10: ds.data()['10'] ?? '',
+    list11: ds.data()['11'] ?? '',
+    list12: ds.data()['12'] ?? '',
+    list13: ds.data()['13'] ?? '',
+    list14: ds.data()['14'] ?? '',
+    list15: ds.data()['15'] ?? '',
+    list16: ds.data()['16'] ?? '',
+    list17: ds.data()['17'] ?? '',
+    list18: ds.data()['18'] ?? '',
+    list19: ds.data()['19'] ?? '',
+    list20: ds.data()['20'] ?? '',
+    list21: ds.data()['21'] ?? '',
+    list22: ds.data()['22'] ?? '',
+    list23: ds.data()['23'] ?? '',
+    list24: ds.data()['24'] ?? '',
+    list25: ds.data()['25'] ?? '',
+    list26: ds.data()['26'] ?? '',
+    list999: ds.data()['999'] ?? '',
   );
 }
