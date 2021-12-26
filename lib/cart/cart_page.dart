@@ -1297,6 +1297,7 @@ class _CartPageState extends State<CartPage> {
   }
 
   void showOkWarning(BuildContext context, Widget dialogIcon, String bodyString,
+  //void showOkWarning(BuildContext context, String bodyString,
       String buttonName) {
     showDialog(
       context: context,
