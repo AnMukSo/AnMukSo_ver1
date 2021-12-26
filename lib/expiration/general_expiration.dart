@@ -16,6 +16,7 @@ import 'package:an_muk_so/shared/submit_button.dart';
 import 'package:an_muk_so/theme/colors.dart';
 
 bool _isGeneral = true;
+int go = 1; // 이건 바텀 바 를 위해 잠깐 만들어 둔 변수
 
 class GeneralExpiration extends StatefulWidget {
   final String foodItemSeq;
@@ -269,15 +270,14 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
           } else {
             ShortCutDialog(
               context: context,
-              dialogIcon: Icon(Icons.check, color: primary300_main),
               boldBodyString: '나의 CART',
               normalBodyString: '에 추가되었습니다',
-              topButtonName: '바로가기',
               bottomButtonName: '확인',
               onPressedTop: () {
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BottomBar()));
+                go = 0;
               },
               onPressedBottom: () {
                 Navigator.pop(context);

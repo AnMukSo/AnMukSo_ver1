@@ -57,7 +57,7 @@ class _FindPasswordState extends State<FindPassword> {
                       controller: _emailController,
                       cursorColor: primary400_line,
                       decoration: textInputDecoration.copyWith(
-                          hintText: 'abc@iymy.com'),
+                          hintText: 'abc@anmukso.com'),
                       onChanged: (value) {
                         if (value.isNotEmpty) {
                           setState(() {

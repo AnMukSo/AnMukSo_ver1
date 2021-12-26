@@ -114,6 +114,8 @@ flutter:
     - assets/login/
     - assets/images/
     - assets/logo/
+    - assets/An_Icon/
+    - assets/an_icon_resize/
     #- assets/case_model/model_unquant.tflite
     #- assets/case_model/labels.txt
     #여기까지 이약모약 필요한 파일 구성해서 가져오기

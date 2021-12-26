@@ -73,8 +73,9 @@ class _HomePageState extends State<HomePage> {
                               border: Border.all(color: Colors.black, width: 2)),
                           child: Padding(
                             padding: const EdgeInsets.only(left: 16.0),
-                            child: Text('2021년 8월 아토피 캠프 공지 입니다.',
-                                style: Theme.of(context).textTheme.headline5,),
+                            child : NoticeContentBox(context)
+                            // Text( NoticeContents,
+                            //     style: Theme.of(context).textTheme.headline5,),
                           ),
                         ),
                       ),
@@ -167,6 +168,35 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  Widget NoticeContentBox(BuildContext context){
+    return StreamBuilder<DocumentSnapshot>(
+        stream: FirebaseFirestore.instance.collection('Notices').doc('0').snapshots(),
+        builder: (context, snapshot){
+          if (!snapshot.hasData) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          String content = snapshot.data.data()['title'];
+
+
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Text( content, style: Theme.of(context).textTheme.subtitle1,
+                      )
+                    ],
+                  )
+              ),
+            ],
+          );
+        }
+    );
+  }
 
   Widget _bankBox(BuildContext context, bankNum){
     return StreamBuilder<DocumentSnapshot>(
@@ -212,7 +242,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget _newList(BuildContext context){
 
-
     return StreamBuilder<List<NewFood>>(
         stream: DatabaseService().listOfNewFoodData(),
         builder: (context, snapshot) {
@@ -230,7 +259,28 @@ class _HomePageState extends State<HomePage> {
     int count = snapshot.length;
 
     if (count == 0) {
-      return Container(child: Text("없음"),);
+      return Container(
+        width: MediaQuery.of(context).size.height - 32,
+        decoration: BoxDecoration(border: Border.all(color: gray75)),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text("[추후 제품 업데이트 예정]",
+          style: Theme.of(context).textTheme.subtitle2,
+      ),
+        ),);
+      // return Container(
+      //   decoration: BoxDecoration(border: Border.all(color: gray75)),
+      //   child: Image.asset('assets/An_Icon/An_Img_None.png'),
+      // );
+    }
+    String _shortenName(String name) {
+
+        if (name.length > 7) {
+          name = name.substring(0, 7);
+          name = name + '...';
+        }
+
+      return name;
     }
 
     return GridView.builder(
@@ -260,7 +310,7 @@ class _HomePageState extends State<HomePage> {
 
                         ),
                       ),
-                      Text(snapshot[index].itemName,
+                      Text( _shortenName(snapshot[index].itemName),
                         style: Theme.of(context).textTheme.subtitle2,
                       ),
                     ],

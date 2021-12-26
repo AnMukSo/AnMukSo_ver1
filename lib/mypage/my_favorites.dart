@@ -52,9 +52,9 @@ class _MyFavoritesState extends State<MyFavorites> {
                                     Container(
                                       height: 30,
                                     ),
-                                    Image.asset(
-                                      'assets/images/no_review.png',
-                                    ),
+                                    // Image.asset(
+                                    //   'assets/images/no_review.png',
+                                    // ),
                                     Container(
                                       height: 10,
                                     ),

@@ -66,9 +66,6 @@ class _MyReviewsState extends State<MyReviews> {
                                     Container(
                                       height: 30,
                                     ),
-                                    Image.asset(
-                                      'assets/images/no_review.png',
-                                    ),
                                     Container(
                                       height: 10,
                                     ),

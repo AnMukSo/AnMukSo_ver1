@@ -75,10 +75,14 @@ class _ListViewReviewWidgetState extends State<ListViewReviewWidget> {
              _onTap();
            },
            child: Icon(Icons.arrow_upward, size: 35, color: gray300_inactivated,),
+           // child: ImageIcon(
+           //   AssetImage('assets/An_Icon_Resize/An_Top.png'),
+           //   color: gray300_inactivated,
+           // ),
            backgroundColor: gray50,
-           shape: RoundedRectangleBorder(
-               borderRadius: BorderRadius.all(Radius.circular(15.0))
-           ),
+           // shape: RoundedRectangleBorder(
+           //     borderRadius: BorderRadius.all(Radius.circular(15.0))
+           // ),
          ),
        ),
      );

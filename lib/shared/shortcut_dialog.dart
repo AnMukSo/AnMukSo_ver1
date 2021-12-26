@@ -6,7 +6,7 @@ class ShortCutDialog extends StatelessWidget {
   final Widget dialogIcon;
   final String boldBodyString;
   final String normalBodyString;
-  final String topButtonName;
+  //final String topButtonName;
   final String bottomButtonName;
   final Function onPressedTop;
   final Function onPressedBottom;
@@ -17,7 +17,7 @@ class ShortCutDialog extends StatelessWidget {
     @required this.dialogIcon,
     @required this.boldBodyString,
     @required this.normalBodyString,
-    @required this.topButtonName,
+    //@required this.topButtonName,
     @required this.bottomButtonName,
     @required this.onPressedTop,
     @required this.onPressedBottom,
@@ -38,7 +38,6 @@ class ShortCutDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(height: 10),
-              dialogIcon,
               SizedBox(height: 13),
               /* BODY */
               RichText(
@@ -57,29 +56,7 @@ class ShortCutDialog extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 3),
-              InkWell(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          topButtonName,
-                          style: Theme.of(context)
-                              .textTheme
-                              .subtitle1
-                              .copyWith(color: gray300_inactivated),
-                        ),
-                        Icon(
-                          Icons.navigate_next,
-                          color: gray300_inactivated,
-                          size: 22,
-                        )
-                      ],
-                    ),
-                  ),
-                  onTap: onPressedTop),
-              SizedBox(width: 16),
+              SizedBox(width: 25),
               /* RIGHT ACTION BUTTON */
               ElevatedButton(
                 child: Text(

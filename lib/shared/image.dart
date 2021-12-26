@@ -23,7 +23,7 @@ class _FoodImageState extends State<FoodImage> {
           if (snapshot.data == 'null') {
             return Container(
               decoration: BoxDecoration(border: Border.all(color: gray75)),
-              child: Image.asset('assets/images/null.png'),
+              child: Image.asset('assets/an_icon_resize/An_Img_None.png'),
             );
           } else {
             return Container(

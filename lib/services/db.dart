@@ -36,8 +36,8 @@ class DatabaseService {
   ///NEW FOOD list 추가하기 위해서 만드는 코드
   // collection reference
   final CollectionReference newFoodCollection =
-  FirebaseFirestore.instance.collection('Food'); //NewFood collection으로 바꾸기
-  Query newFoodQuery = FirebaseFirestore.instance.collection('Food');//NewFood collection으로 바꾸기
+  FirebaseFirestore.instance.collection('NewProductLists'); //NewFood collection으로 바꾸기
+  Query newFoodQuery = FirebaseFirestore.instance.collection('NewProductLists');//NewFood collection으로 바꾸기
   Stream<List<NewFood>> newFoodsSnapshots;
 
 

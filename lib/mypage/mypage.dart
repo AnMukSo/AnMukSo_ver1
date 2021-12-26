@@ -145,10 +145,8 @@ class _MyPageState extends State<MyPage> {
                 ),
                 // TODO: image picker
                 IconButton(
-                  icon: Icon(
-                    Icons.person,
-                    color: primary300_main,
-                  ),
+                  icon:
+                  Image(image: AssetImage('assets/an_icon_resize/An_User.png')),
                   onPressed: () {},
                 ),
               ],
@@ -228,7 +226,7 @@ Widget _myMenu(String name, String count, BuildContext context, var nextPage) {
               style: Theme.of(context)
                   .textTheme
                   .headline2
-                  .copyWith(color: primary500_light_text)),
+                  .copyWith(color: primary300_main)),
         ],
       ),
     ),

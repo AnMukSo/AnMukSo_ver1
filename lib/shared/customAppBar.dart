@@ -1,3 +1,4 @@
+import 'package:an_muk_so/search/search.dart';
 import 'package:flutter/material.dart';
 //import 'package:an_muk_so/home/search_screen.dart';
 //import 'package:an_muk_so/ranking/Page/ranking_content_page.dart';
@@ -139,19 +140,36 @@ class CustomAppBarWithArrowBackAndSearch extends StatelessWidget
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       actions: [
+
+    /*
         Padding(
           padding: const EdgeInsets.only(right: 10.0),
           child: IconButton(
-            icon: Icon(
+            icon:
+            Icon(
               Icons.search,
               color: primary300_main,
             ),
-            // onPressed: () => Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => SearchScreen()),
-            // ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SearchScreen()),
+            ),
           ),
         ),
+    */
+    Padding(
+    padding: const EdgeInsets.only(right: 10.0),
+    child: IconButton(
+    icon:
+    SizedBox(
+    height: 50,
+    width: 50,
+    child: Image(image: AssetImage('assets/icons/An_Search.png'))),
+    onPressed: () => Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SearchScreen()),
+    ),
+    ),)
         //for test home
       ],
       leading: IconButton(
