@@ -15,15 +15,21 @@ import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
 import 'camera/no_result.dart';
 import 'cart/cart_page.dart';
+import 'expiration/general_expiration.dart';
 
 
 class BottomBar extends StatefulWidget {
+  // int go;
+  //
+  // BottomBar({this.go});
+
   @override
   _BottomBarState createState() => _BottomBarState();
 }
 
 class _BottomBarState extends State<BottomBar> {
-  int _selectedIndex = 0;
+
+  int _selectedIndex = 1;
 
   //barcode 숫자를 알기 위함
   String _scanBarcode = 'Unknown';
@@ -107,6 +113,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
 
   Widget build(BuildContext context) {
+
     return Scaffold(
       //appBar: _selectedIndex != 2 ? AMSAppBar('home') : AMSAppBar('카테고리'),
       appBar: _selectedIndex != 1 ? _selectedIndex != 0 ? AMSAppBar('전체 상품'):  AMSAppBar('장바구니') : AMSAppBar('home'),

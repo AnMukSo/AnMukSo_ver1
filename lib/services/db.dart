@@ -33,6 +33,13 @@ class DatabaseService {
     return foodsSnapshots;
   }
 
+  ///NEW FOOD list 추가하기 위해서 만드는 코드
+  // collection reference
+  final CollectionReference newFoodCollection =
+  FirebaseFirestore.instance.collection('NewProductLists'); //NewFood collection으로 바꾸기
+  Query newFoodQuery = FirebaseFirestore.instance.collection('NewProductLists');//NewFood collection으로 바꾸기
+  Stream<List<NewFood>> newFoodsSnapshots;
+
 
 
   //for search from User Foods
@@ -74,7 +81,9 @@ class DatabaseService {
           totalRating: doc.data()['totalRating'] ?? 0,
           numOfReviews: doc.data()['numOfReviews'] ?? 0,
           searchNameList: doc.data()['searchNameList'] ?? [],
-          rankCategory: doc.data()['RANK_CATEGORY'] ?? ''
+          rankCategory: doc.data()['RANK_CATEGORY'] ?? '',
+          itemCountry: doc.data()['ITEM_COUNTRY'] ?? '',
+
       );
     }).toList();
   }
@@ -98,7 +107,8 @@ class DatabaseService {
       totalRating: snapshot.data()['totalRating'] ?? 0,
 
       numOfReviews: snapshot.data()['numOfReviews'] ?? 0,
-        rankCategory: snapshot.data()['RANK_CATEGORY'] ?? ''
+        rankCategory: snapshot.data()['RANK_CATEGORY'] ?? '',
+      itemCountry: snapshot.data()['ITEM_COUNTRY'] ?? '',
 
     );
   }
@@ -107,6 +117,26 @@ class DatabaseService {
   Stream<Food> get foodData {
     return foodCollection.doc(itemSeq).snapshots().map(_foodFromSnapshot);
   }
+
+  /* NEW Food list flow */
+  List<NewFood> _newFoodListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return NewFood(
+        itemName: doc.data()['ITEM_NAME'] ?? '',
+        itemSeq: doc.data()['ITEM_SEQ'] ?? '',
+        rankCategory: doc.data()['RANK_CATEGORY'] ?? '카테고리 없음',
+      );
+    }).toList();
+  }
+
+  // get new food doc stream
+
+  //get food list stream
+  Stream<List<NewFood>> listOfNewFoodData() {
+    newFoodsSnapshots = newFoodQuery.snapshots().map(_newFoodListFromSnapshot);
+    return newFoodsSnapshots;
+  }
+
 
   /* User */
   // collection reference
@@ -370,7 +400,7 @@ class DatabaseService {
   Future<void> createInquiry(index, title, body, from) async {
     String type;
     if (index == 1)
-      type = '1. 의약품 정보 문의 및 요청';
+      type = '1. 상품 정보 문의 및 요청';
     else if (index == 2)
       type = '2. 서비스 불편, 오류 제보';
     else if (index == 3)

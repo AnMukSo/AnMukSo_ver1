@@ -31,6 +31,7 @@ class AMSAppBar extends StatelessWidget with PreferredSizeWidget {
                   width: 50,
                   child: Image(image: AssetImage('assets/icons/AMS_Logo.png'))),
             ),
+            Text('안먹소',style: Theme.of(context).textTheme.headline5,)
             //TODO: 안먹소 글씨 추가해야함
           ],
         ),
@@ -58,16 +59,16 @@ class AMSAppBar extends StatelessWidget with PreferredSizeWidget {
     } else //category bar
       return AppBar(
         titleSpacing: 8,
-        leading: IconButton(
-          icon:
-          SizedBox(
-              height: 28,
-              width: 28,
-              child: Image(image: AssetImage('assets/icons/An_Back.png'))),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        // leading: IconButton(
+        //   icon:
+        //   SizedBox(
+        //       height: 28,
+        //       width: 28,
+        //       child: Image(image: AssetImage('assets/icons/An_Back.png'))),
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        // ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

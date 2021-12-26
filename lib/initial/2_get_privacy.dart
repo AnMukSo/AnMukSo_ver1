@@ -9,6 +9,8 @@ import 'package:an_muk_so/shared/constants.dart';
 import 'package:an_muk_so/shared/customAppBar.dart';
 import 'package:an_muk_so/shared/submit_button.dart';
 import 'package:an_muk_so/theme/colors.dart';
+import 'package:intl/intl.dart';
+
 
 var birthYearMaskFormatter =
     new MaskTextInputFormatter(mask: '####', filter: {"#": RegExp(r'[0-9]')});
@@ -174,7 +176,7 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
     return AMSSubmitButton(
       context: context,
       isDone: _isNicknameFilled && _isBirthYearFilled && _isGenderFilled,
-      textString: '다음',
+      textString: '안먹소 시작하기',
       onPressed: () async {
         if (_isNicknameFilled && _isBirthYearFilled && _isGenderFilled) {
           // validation check
@@ -227,20 +229,33 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
                   behavior: SnackBarBehavior.floating,
                   backgroundColor: Colors.black.withOpacity(0.87)));
             } else {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => GetHealthPage(
-                            nickname: _nicknameController.text,
-                            birthYear: _birthYearController.text,
-                            sex: _isSelected[0] ? 'male' : 'female',
-                          )));
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => GetHealthPage(
+              //               nickname: _nicknameController.text,
+              //               birthYear: _birthYearController.text,
+              //               sex: _isSelected[0] ? 'male' : 'female',
+              //             )));
+
+              // 이용약관 동의 날짜 저장
+              String nowDT = DateFormat('yyyy.MM.dd').format(DateTime.now());
+              await DatabaseService(uid: user.uid).addUser(nowDT);
+
+              await DatabaseService(uid: user.uid).updateUserPrivacy(
+                  _nicknameController.text, _birthYearController.text, _isSelected[0] ? 'male' : 'female');
+
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/start', (Route<dynamic> route) => false);
             }
           }
         }
+
       },
     );
   }
+
+
 
   Widget exclusiveButton(index, isPressed, buttonName) {
     return ButtonTheme(

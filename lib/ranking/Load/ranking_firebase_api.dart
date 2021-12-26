@@ -42,7 +42,7 @@ class FirebaseApi {
         else{
           refFoods = refFoods
               .where('RANK_CATEGORY', isEqualTo: getCategory) //;
-              .orderBy('totalRating', descending: true)
+              .orderBy('numOfReviews', descending: true)
               .orderBy('ITEM_NAME', descending: false)
               .limit(limit);
         }

@@ -136,7 +136,7 @@ class _PolicyPrivacyPageState extends State<PolicyPrivacyPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 6 조 개인정보의 국외이전\n',
+                          '\n\n제 6 조 개인 정보의 수정 및 이전\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6

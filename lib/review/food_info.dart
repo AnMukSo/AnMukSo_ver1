@@ -147,8 +147,13 @@ class _ReviewPageState extends State<ReviewPage> {
                 filter: filter, category: rankingCategory)
             : CustomAppBarWithGoToRanking('상품 정보', Icon(Icons.arrow_back), 0.5),
         floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.create),
-            backgroundColor: Color(0xff00C2AE),
+           // child: Icon(Icons.create),
+          //child: ImageIcon(AssetImage('assets/An_Icon/An_Write.png'), color: Colors.red),
+           child: SizedBox(
+                height: 50,
+                width: 50,
+                child: Image(image: AssetImage('assets/an_icon_resize/An_Write.png'))),
+            backgroundColor: primary300_main,
             elevation: 6.0,
             onPressed: () async {
               if (await ReviewService()
@@ -261,6 +266,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                   ),
                                   SliverToBoxAdapter(
                                       child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(height: 10),
                                       _underInfo(context, food, userData),
@@ -397,10 +403,10 @@ class _ReviewPageState extends State<ReviewPage> {
                                   ShortCutDialog(
                                     context: context,
                                     dialogIcon:
-                                        Icon(Icons.favorite, color: warning),
+                                         Icon(Icons.favorite, color: warning),
                                     boldBodyString: '찜 목록',
                                     normalBodyString: '에 추가되었습니다',
-                                    topButtonName: '바로가기',
+                                    //topButtonName: '바로가기',
                                     bottomButtonName: '확인',
                                     onPressedTop: () {
                                       Navigator.pop(context);
@@ -428,16 +434,28 @@ class _ReviewPageState extends State<ReviewPage> {
                                   color: gray50,
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
-                                child: Icon(
-                                  _isFavorite
-                                      ? Icons.favorite
-                                      : Icons.favorite_border,
-                                  color: _isFavorite
-                                      ? warning
-                                      : gray300_inactivated,
-                                  size: 24,
+                                child:
+                                IconButton(
+                                  icon: _isFavorite
+                                         ? ImageIcon(
+                                    AssetImage('assets/An_Icon/An_Heart_On.png'),
+                                    color: warning,
+                                  )
+                                        : ImageIcon(
+                                    AssetImage('assets/An_Icon/An_Heart_Off.png'),
+                                    color: gray300_inactivated
+                                  ),
                                 ),
-                              ),
+                                // Icon(
+                                //   _isFavorite
+                                //       ? Icons.favorite
+                                //       : Icons.favorite_border,
+                                //   color: _isFavorite
+                                //       ? warning
+                                //       : gray300_inactivated,
+                                //   size: 24,
+                                //   )
+                               ),
                             ),
                             Container(
                               width: 8,
@@ -477,10 +495,11 @@ class _ReviewPageState extends State<ReviewPage> {
                                           width: 24,
                                           height: 24,
                                           child: Image.asset(
-                                              'assets/icons/warning_icon_primary.png')),
+                                              'assets/icons/warning_icon_primary.png')
+                                      ),
                                       boldBodyString: '',
-                                      normalBodyString: '이미 저장한 약입니다',
-                                      topButtonName: '나의 약 보관함 바로가기',
+                                      normalBodyString: '이미 담은 상품입니다',
+                                      //topButtonName: '나의 상품 보관함 바로가기',
                                       bottomButtonName: '확인',
                                       onPressedTop: () {
                                         Navigator.pop(context);
@@ -489,6 +508,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                             MaterialPageRoute(
                                                 builder: (context) =>
                                                     BottomBar()));
+                                        go = 1; //이거도 일단 지켜봐야 하는 변수
                                       },
                                       onPressedBottom: () {
                                         Navigator.pop(context);
@@ -546,7 +566,6 @@ class _ReviewPageState extends State<ReviewPage> {
 
   /* Under Information */
   Widget _underInfo(BuildContext context, Food food, UserData userData) {
-
     return Padding(
       key: _key3,
       padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
@@ -560,12 +579,30 @@ class _ReviewPageState extends State<ReviewPage> {
                         color: gray750_activated,
                       )),
             ),
-            _foodDocInfo(context, food.itemSeq, 'WARNING'),
+            Text(food.warningData,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2
+                    .copyWith(color: gray600, height: 1.6)),
             SizedBox(height: 22),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text('원산지',
+                  style: Theme.of(context).textTheme.subtitle1.copyWith(
+                    color: gray750_activated,
+                  )),
+            ),
+            Text(food.itemCountry,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText2
+                    .copyWith(color: gray600, height: 1.6)),
+            SizedBox(height: 22),
+
           ]),
     );
   }
-
+/*
   Widget _foodDocInfo(BuildContext context, String foodItemSeq, String type) {
     return StreamBuilder<Food>(
         stream: DatabaseService(itemSeq: foodItemSeq).foodData,
@@ -573,18 +610,23 @@ class _ReviewPageState extends State<ReviewPage> {
           if (snapshot.hasData) {
             Food food = snapshot.data;
             entpName = food.entpName;
-            infoNB = food.warningData;
+            //infoNB = food.warningData;
             if (type == 'WARNING') {
-              return ListView.builder(
-                  padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
-                  physics: const ClampingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: food.warningData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Text(
-                      food.warningData[index].toString(),
-                    );
-                  });
+              return       Text(food.warningData,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      .copyWith(color: gray600, height: 1.6));
+              // return ListView.builder(
+              //     padding: EdgeInsets.fromLTRB(0, 0, 0, 16),
+              //     physics: const ClampingScrollPhysics(),
+              //     shrinkWrap: true,
+              //     itemCount: food.warningData.length,
+              //     itemBuilder: (BuildContext context, int index) {
+              //       return Text(
+              //         food.warningData[index].toString(),
+              //       );
+              //     });
             }  else {
               return Container();
             }
@@ -593,7 +635,7 @@ class _ReviewPageState extends State<ReviewPage> {
           }
         });
   }
-
+*/
   Widget _totalRating() {
     return Column(
       children: [
@@ -747,13 +789,23 @@ class _ReviewPageState extends State<ReviewPage> {
                             Container(
                               height: 30,
                             ),
-                            Image.asset(
-                              'assets/images/no_review.png',
-                            ),
                             Container(
                               height: 10,
                             ),
-                            Text("아직 작성된 리뷰가 없어요")
+                            Column(
+                              children: [
+                                Center(
+                                  child: Text("아직 작성된 리뷰가 없어요",
+                                    style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray300_inactivated),
+                                  ),
+                                ),
+                                Center(
+                                  child: Text("리뷰를 작성해주세요",
+                                    style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray300_inactivated),
+                                  ),
+                                ),
+                              ],
+                            )
                           ],
                         ))
                     : ReviewList(_searchText, "all", widget.foodItemSeq),
@@ -839,7 +891,7 @@ class _ReviewPageState extends State<ReviewPage> {
                       .bodyText1
                       .copyWith(color: gray700),
                   children: <TextSpan>[
-                    TextSpan(text: "해당 약에 대한 리뷰를\n이미 작성하셨습니다"),
+                    TextSpan(text: "해당 상품에 대한 리뷰를\n이미 작성하셨습니다"),
                   ],
                 ),
               ),

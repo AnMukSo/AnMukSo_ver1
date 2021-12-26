@@ -84,6 +84,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                               .headline6
                               .copyWith(color: primary600_bold_text),
                         ),
+
                         ListView.builder(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             physics: const ClampingScrollPhysics(),
@@ -382,7 +383,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 19 조 (책임과 손해배상)\n',
+                          '\n\n제 19 조 (이용요금 및 환불정책)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -401,7 +402,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 20 조 (이용제한 등)\n',
+                          '\n\n제 20 조 (책임과 손해 배상)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -420,7 +421,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 21 조 (책임제한)\n',
+                          '\n\n제 21 조 (이용제한 등)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -439,7 +440,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 22 조 (회사의 면책)\n',
+                          '\n\n제 22 조 (책임 제한)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -458,7 +459,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 23 조 (준거법 및 재판관할))\n',
+                          '\n\n제 23 조 (회사의 면책)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -477,7 +478,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 24 조 (의약품 리뷰)\n',
+                          '\n\n제 24 조 (준거법 및 재판관할)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -496,7 +497,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         Text(
-                          '\n\n제 25 조 (약사의 한마디)\n',
+                          '\n\n제 25 조 (상품 리뷰)\n',
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -509,6 +510,25 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                             itemCount: privacy.list25.length,
                             itemBuilder: (BuildContext context, int index) {
                               return Text(privacy.list25[index].toString(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText2
+                                      .copyWith(color: gray600, height: 1.6));
+                            }),
+                        Text(
+                          '\n\n제 26 조 (안먹소 검증단 평가)\n',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .copyWith(color: primary600_bold_text),
+                        ),
+                        ListView.builder(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            physics: const ClampingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: privacy.list26.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Text(privacy.list26[index].toString(),
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyText2
@@ -534,6 +554,7 @@ class _PolicyTermPageState extends State<PolicyTermPage> {
                                       .copyWith(color: gray600, height: 1.6));
                             }),
                         SizedBox(height: 20)
+
                       ],
                     ),
                   );
@@ -572,6 +593,7 @@ class Terms {
   final List list23;
   final List list24;
   final List list25;
+  final List list26;
   final List list999;
 
   Terms(
@@ -601,7 +623,9 @@ class Terms {
       this.list23,
       this.list24,
       this.list25,
-      this.list999});
+        this.list26,
+        this.list999
+      });
 }
 
 final CollectionReference policyCollection =
@@ -636,6 +660,7 @@ Future<Terms> getTerms() async {
     list23: ds.data()['23'] ?? '',
     list24: ds.data()['24'] ?? '',
     list25: ds.data()['25'] ?? '',
+    list26: ds.data()['26'] ?? '',
     list999: ds.data()['999'] ?? '',
   );
 }

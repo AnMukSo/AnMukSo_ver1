@@ -23,7 +23,7 @@ class _FoodImageState extends State<FoodImage> {
           if (snapshot.data == 'null') {
             return Container(
               decoration: BoxDecoration(border: Border.all(color: gray75)),
-              child: Image.asset('assets/images/null.png'),
+              child: Image.asset('assets/an_icon_resize/An_Img_None.png'),
             );
           } else {
             return Container(
@@ -41,7 +41,7 @@ class _FoodImageState extends State<FoodImage> {
 Future<String> _downloadURLExample(String itemSeq) async {
   try {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
-        .ref('Image/$itemSeq.png')
+        .ref('Image/$itemSeq.jpeg')
         .getDownloadURL();
 
 

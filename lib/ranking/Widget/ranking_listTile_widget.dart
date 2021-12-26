@@ -36,7 +36,7 @@ class RankingTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       //누르면 상품 정보 페이지로 넘어가기
       onTap: () => {
-        Navigator.pop(context),
+       // Navigator.pop(context),
         Navigator.push(
           context,
           MaterialPageRoute(

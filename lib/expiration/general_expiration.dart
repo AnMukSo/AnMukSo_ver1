@@ -16,6 +16,7 @@ import 'package:an_muk_so/shared/submit_button.dart';
 import 'package:an_muk_so/theme/colors.dart';
 
 bool _isGeneral = true;
+int go = 1; // 이건 바텀 바 를 위해 잠깐 만들어 둔 변수
 
 class GeneralExpiration extends StatefulWidget {
   final String foodItemSeq;
@@ -124,6 +125,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            /*
             InkWell(
               child: Text(
                 '일반상품인가요?',
@@ -140,6 +142,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
                 });
               },
             ),
+            */
           ],
         ),
         SizedBox(height: 20),
@@ -153,7 +156,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '사용기한',
+          '구입 날',
           style: Theme.of(context).textTheme.subtitle1,
         ),
         SizedBox(
@@ -257,7 +260,7 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
           if (_isPast) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(
-                  '사용기한이 지났습니다. 다시 확인해주세요',
+                  '유통기한이 지났습니다. 다시 확인해주세요',
                   textAlign: TextAlign.center,
                 ),
                 shape: RoundedRectangleBorder(
@@ -267,15 +270,14 @@ class _GeneralExpirationState extends State<GeneralExpiration> {
           } else {
             ShortCutDialog(
               context: context,
-              dialogIcon: Icon(Icons.check, color: primary300_main),
               boldBodyString: '나의 CART',
               normalBodyString: '에 추가되었습니다',
-              topButtonName: '바로가기',
               bottomButtonName: '확인',
               onPressedTop: () {
                 Navigator.pop(context);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => BottomBar()));
+                go = 0;
               },
               onPressedBottom: () {
                 Navigator.pop(context);
