@@ -1038,7 +1038,7 @@ class _CartPageState extends State<CartPage> {
                       style: Theme.of(context)
                           .textTheme
                           .subtitle1
-                          .copyWith(color: primary500_light_text),
+                          .copyWith(color: gray300_inactivated),
                       textAlign: TextAlign.start,
                     ),
                   ),
@@ -1059,7 +1059,7 @@ class _CartPageState extends State<CartPage> {
                   SizedBox(
                     height: 24,
                     width: 24,
-                    child: Image.asset('assets/icons/barcode_icon_grey.png'),
+                    child: Image.asset('assets/an_icon_resize/An_Barcode.png'),
                   ),
                   SizedBox(width: 15),
                   Container(
@@ -1091,7 +1091,7 @@ class _CartPageState extends State<CartPage> {
                   SizedBox(
                     height: 24,
                     width: 24,
-                    child: Image.asset('assets/icons/search_grey.png'),
+                    child: Image.asset('assets/an_icon_resize/An_Search.png'),
                   ),
                   SizedBox(width: 15),
                   Container(
@@ -1510,7 +1510,7 @@ class _CartPageState extends State<CartPage> {
           children: [
             SizedBox(
                 height: 45,
-                child: Image(image: AssetImage('assets/images/msg_box.png'))),
+                child: Image(image: AssetImage('assets/icons/msg_box.png'))),
           ],
         ),
       ),
@@ -1519,9 +1519,9 @@ class _CartPageState extends State<CartPage> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(
-                  height: 150,
-                  child: Image(image: AssetImage('assets/images/background_nothing.png'))),
+              // SizedBox(
+              //     height: 150,
+              //     child: Image(image: AssetImage('assets/images/background_nothing.png'))),
             ],
           ),
         ),
@@ -1532,7 +1532,7 @@ class _CartPageState extends State<CartPage> {
             padding: const EdgeInsets.only(bottom: 75.0),
             child: SizedBox(
                 height: 45,
-                child: Image(image: AssetImage('assets/images/bottom_msg_box.png'))),
+                child: Image(image: AssetImage('assets/icons/bottom_msg_box.png'))),
           )),
     ]);
   }
