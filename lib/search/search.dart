@@ -746,7 +746,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               padding:
                               const EdgeInsets.only(top: 4.0, bottom: 4),
                               child:
-                              Image.asset('assets/icons/search_grey.png'),
+                              Image.asset('assets/an_icon_resize/An_Search.png'),
                             ),
                           ),
                           hintText: '상품명을 두 글자 이상 입력해주세요',
