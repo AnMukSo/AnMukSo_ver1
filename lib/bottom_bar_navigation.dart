@@ -123,7 +123,20 @@ class _BottomBarState extends State<BottomBar> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-                icon: ImageIcon(
+              icon:
+              SizedBox(
+                  child: Image(image: AssetImage('assets/an_icon_resize/An_Mycart.png'))),
+                iconSize: 50,
+                onPressed: () {
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              }
+            ),
+            /*
+            IconButton(
+                icon:
+                ImageIcon(
                   AssetImage('assets/icons/An_Cart.png'),
                 ),
                 iconSize: 50,
@@ -135,32 +148,54 @@ class _BottomBarState extends State<BottomBar> {
                     _selectedIndex = 0;
                   });
                 }),
+            */
             //SizedBox(width: 70, height: 36),
+            // IconButton(
+            //     icon: Icon(Icons.home),
+            //     iconSize: 50,
+            //     color: _selectedIndex == 1
+            //         ? Colors.greenAccent
+            //         : gray300_inactivated,
+            //     onPressed: () {
+            //       setState(() {
+            //         _selectedIndex = 1;
+            //       });
+            //     }),
             IconButton(
-                icon: Icon(Icons.home),
+                icon:
+                SizedBox(
+                    child: Image(image: AssetImage('assets/an_icon_resize/An_Home.png'))),
                 iconSize: 50,
-                color: _selectedIndex == 1
-                    ? Colors.greenAccent
-                    : gray300_inactivated,
                 onPressed: () {
                   setState(() {
                     _selectedIndex = 1;
                   });
-                }),
-
+                }
+            ),
+            // IconButton(
+            //     icon: ImageIcon(
+            //       AssetImage('assets/icons/An_Category.png'),
+            //     ),
+            //     iconSize: 50,
+            //     color: _selectedIndex == 2
+            //          ? Colors.greenAccent
+            //          : gray300_inactivated,
+            //     onPressed: () {
+            //       setState(() {
+            //         _selectedIndex = 2;
+            //       });
+            //     }),
             IconButton(
-                icon: ImageIcon(
-                  AssetImage('assets/icons/An_Category.png'),
-                ),
+                icon:
+                SizedBox(
+                    child: Image(image: AssetImage('assets/an_icon_resize/An_List.png'))),
                 iconSize: 50,
-                color: _selectedIndex == 2
-                     ? Colors.greenAccent
-                     : gray300_inactivated,
                 onPressed: () {
                   setState(() {
                     _selectedIndex = 2;
                   });
-                }),
+                }
+            ),
           ],
         ),
       ),
@@ -235,7 +270,7 @@ class _BottomBarState extends State<BottomBar> {
                       style: Theme.of(context)
                           .textTheme
                           .subtitle1
-                          .copyWith(color: primary500_light_text),
+                          .copyWith(color: gray300_inactivated),
                       textAlign: TextAlign.start,
                     ),
                   ),
@@ -256,7 +291,7 @@ class _BottomBarState extends State<BottomBar> {
                   SizedBox(
                     height: 24,
                     width: 24,
-                    child: Image.asset('assets/icons/barcode_icon_grey.png'),
+                    child: Image.asset('assets/an_icon_resize/An_Barcode.png'),
                   ),
                   SizedBox(width: 15),
                   Container(
@@ -288,7 +323,7 @@ class _BottomBarState extends State<BottomBar> {
                   SizedBox(
                     height: 24,
                     width: 24,
-                    child: Image.asset('assets/icons/search_grey.png'),
+                    child: Image.asset('assets/an_icon_resize/An_Search.png'),
                   ),
                   SizedBox(width: 15),
                   Container(
