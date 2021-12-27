@@ -134,7 +134,7 @@ class AMSSubmitButton extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
         border: Border.all(
-          color: isDone ? primary400_line : gray300_inactivated,
+          color: isDone ? primary300_main : gray300_inactivated,
           width: 1,
         ),
         gradient: isDone
