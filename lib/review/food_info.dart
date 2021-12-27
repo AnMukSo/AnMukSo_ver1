@@ -209,7 +209,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                                           .copyWith(
                                                             color: InfoTab ==
                                                                     true
-                                                                ? primary500_light_text
+                                                                ? primary300_main
                                                                 : gray300_inactivated,
                                                           ))),
                                               onTap: _onTapInfo
@@ -222,7 +222,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                               border: Border(
                                                   bottom: BorderSide(
                                                       color: InfoTab == true
-                                                          ? primary400_line
+                                                          ? primary300_main
                                                           : gray100,
                                                       width: InfoTab == true
                                                           ? 2.0
@@ -239,7 +239,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                                           color: InfoTab ==
                                                                   true
                                                               ? gray300_inactivated
-                                                              : primary500_light_text,
+                                                              : primary300_main,
                                                         ))),
                                             onTap: _onTapReview,
                                           ),
@@ -253,7 +253,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                                       //color: pillInfoTab == true
                                                     color: InfoTab == true
                                                      ? gray100
-                                                          : primary400_line,
+                                                          : primary300_main,
                                                       width: InfoTab == true
                                                           ? 1.0
                                                           : 2.0))),
@@ -687,30 +687,7 @@ class _ReviewPageState extends State<ReviewPage> {
               ),
               Container(width: 5),
 
-              InkWell(
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(
-                          color: gray300_inactivated,
-                          fontSize: MediaQuery.of(context).size.width <= 320
-                              ? 10
-                              : 11,
-                          decoration: TextDecoration.underline,
-                        ),
-                    children: <TextSpan>[
-                      TextSpan(text: '더 보기 '),
-                    ],
-                  ),
-                ),
-                onTap: () {
-                  //TODO: 리뷰 정책 안내
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ReviewPolicyMore()));
-                },
-              ),
+
             ],
           ),
         ),
@@ -838,7 +815,7 @@ class _ReviewPageState extends State<ReviewPage> {
                         width: 10,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 4.0, bottom: 4),
-                          child: Image.asset('assets/icons/search_grey.png'),
+                          child: Image.asset('assets/an_icon_resize/An_Search.png'),
                         ),
                       ),
                       hintText: '어떤 리뷰를 찾고계세요?',

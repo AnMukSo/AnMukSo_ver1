@@ -150,7 +150,7 @@ class _WriteReviewState extends State<WriteReview> {
               itemBuilder: (context, _) =>
                   // Icon(Icons.star, color: primary300_main),
                   Image.asset(
-                'assets/icons/rating_star.png',
+                'assets/an_icon_resize/An_Star_On.png',
                 width: 28,
                 height: 28,
               ),
@@ -173,7 +173,7 @@ class _WriteReviewState extends State<WriteReview> {
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: Theme.of(context).textTheme.caption.copyWith(
-                      color: primary500_light_text,
+                      color: gray300_inactivated,
                       fontSize: 12,
                     ),
                 children: <TextSpan>[
@@ -182,7 +182,7 @@ class _WriteReviewState extends State<WriteReview> {
                         ? "평가해주세요"
                         : '${starRatingText.split(" ")[0]}',
                     style: Theme.of(context).textTheme.caption.copyWith(
-                        color: primary600_bold_text,
+                        color: gray300_inactivated,
                         fontSize: 12,
                         fontWeight: FontWeight.bold),
                   ),
@@ -249,7 +249,7 @@ class _WriteReviewState extends State<WriteReview> {
                       "별로에요",
                       style: effect == "bad"
                           ? Theme.of(context).textTheme.caption.copyWith(
-                              color: primary600_bold_text, fontSize: 12)
+                              color: primary300_main, fontSize: 12)
                           : Theme.of(context)
                               .textTheme
                               .caption
@@ -284,7 +284,7 @@ class _WriteReviewState extends State<WriteReview> {
                       "보통이에요",
                       style: effect == "soso"
                           ? Theme.of(context).textTheme.caption.copyWith(
-                              color: primary600_bold_text, fontSize: 12)
+                              color: primary300_main, fontSize: 12)
                           : Theme.of(context)
                               .textTheme
                               .caption
@@ -315,7 +315,7 @@ class _WriteReviewState extends State<WriteReview> {
                       "좋아요",
                       style: effect == "good"
                           ? Theme.of(context).textTheme.caption.copyWith(
-                              color: primary600_bold_text, fontSize: 12)
+                              color: primary300_main, fontSize: 12)
                           : Theme.of(context)
                               .textTheme
                               .caption
@@ -461,7 +461,7 @@ class _WriteReviewState extends State<WriteReview> {
                       "알러지 반응 있어요",
                       style: sideEffect == "yes"
                           ? Theme.of(context).textTheme.caption.copyWith(
-                              color: primary600_bold_text, fontSize: 12)
+                              color: primary300_main, fontSize: 12)
                           : Theme.of(context)
                               .textTheme
                               .caption
@@ -504,7 +504,7 @@ class _WriteReviewState extends State<WriteReview> {
                       "알러지 반응 없어요",
                       style: sideEffect == "no"
                           ? Theme.of(context).textTheme.caption.copyWith(
-                              color: primary600_bold_text, fontSize: 12)
+                              color: primary300_main, fontSize: 12)
                           : Theme.of(context)
                               .textTheme
                               .caption
@@ -643,7 +643,7 @@ class _WriteReviewState extends State<WriteReview> {
                   style: Theme.of(context)
                       .textTheme
                       .headline5
-                      .copyWith(color: primary400_line),
+                      .copyWith(color: primary300_main),
                 ),
                 style: ElevatedButton.styleFrom(
                     minimumSize: Size(260, 40),
