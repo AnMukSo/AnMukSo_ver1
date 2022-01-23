@@ -40,7 +40,7 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
   }
 
   Widget _topWarning() {
-    String str1 = '- 탈퇴 시, 이약모약에서 저장한 내역이 모두 삭제되며 탈퇴 이후 복구가 불가능합니다.';
+    String str1 = '- 탈퇴 시, 안전한 먹거리 소비자 연합에 저장한 내역이 모두 삭제되며 탈퇴 이후 복구가 불가능합니다.';
     String str2 = '- 작성된 리뷰는 삭제되지 않으며, 이를 원치 않을 경우 작성한 리뷰를 모두 삭제하신 후 탈퇴해주세요.';
     String str3 = '- 서비스 탈퇴 후, 전자상거래법과 통신비밀보호법 등 관련 법령에 의거하여 일정기간 개인정보가 보관됩니다.';
 

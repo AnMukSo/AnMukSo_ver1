@@ -265,7 +265,7 @@ class _InquiryPageState extends State<InquiryPage> {
                   child: TextFormField(
                     controller: _emailController,
                     decoration: InputDecoration(
-                      hintText: 'abc@iymy.com',
+                      hintText: 'abc@anmukso.com',
                       hintStyle: Theme.of(context).textTheme.bodyText2.copyWith(
                             color: gray300_inactivated,
                           ),

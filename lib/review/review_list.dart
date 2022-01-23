@@ -606,7 +606,7 @@ class _ReviewListState extends State<ReviewList> {
                             .reportReview(review, report, user.uid);
                         Navigator.pop(context);
                         Navigator.pop(context);
-                        IYMYGotoSeeOrCheckDialog("이약모약 운영진에게\n신고가 접수되었어요");
+                        IYMYGotoSeeOrCheckDialog("안먹소 운영진에게\n신고가 접수되었어요");
 
                         // var reviewReported = await ReviewService(documentId: review.documentId).checkReviewIsReported();
                         //
