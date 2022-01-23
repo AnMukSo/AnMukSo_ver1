@@ -371,7 +371,7 @@ class _GetHealthPageState extends State<GetHealthPage> {
         child: AMSSubmitButton(
           context: context,
           isDone: true,
-          textString: '이약모약 시작하기',
+          textString: '안먹소 시작하기',
           onPressed: () async {
             // 이용약관 동의 날짜 저장
             String nowDT = DateFormat('yyyy.MM.dd').format(DateTime.now());

@@ -28,7 +28,7 @@ class _WithdrawalDonePageState extends State<WithdrawalDonePage> {
 
   Widget _information() {
     String str1 = '탈퇴가 완료되었습니다';
-    String str2 = '더 좋은 이약모약 서비스를 위해 노력하겠습니다';
+    String str2 = '더 좋은 서비스를 위해 노력하겠습니다';
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
