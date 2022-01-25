@@ -9,7 +9,6 @@ import 'package:provider/provider.dart';
 
 import 'package:an_muk_so/services/db.dart';
 
-import 'package:an_muk_so/models/user.dart';
 
 
 import 'package:an_muk_so/theme/colors.dart';
