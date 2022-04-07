@@ -61,29 +61,16 @@ class _ListViewReviewWidgetState extends State<ListViewReviewWidget> {
   //이건 바로 위로 올라가게 하기위한 버튼 보고 있는 지점에서 바로 위로 올라갈 수 있게끔 도와주는
    Widget _FAB(){
      return  Container(
-       decoration: BoxDecoration(
-         border: Border.all(color: gray50),
-         borderRadius: BorderRadius.circular(10.0),
-       ),
        width: 36,
        height: 36,
        child:
-       FittedBox(
-         child:
-         FloatingActionButton(
-           onPressed: (){
-             _onTap();
-           },
-           child: Icon(Icons.arrow_upward, size: 35, color: gray300_inactivated,),
-           // child: ImageIcon(
-           //   AssetImage('assets/An_Icon_Resize/An_Top.png'),
-           //   color: gray300_inactivated,
-           // ),
-           backgroundColor: gray50,
-           // shape: RoundedRectangleBorder(
-           //     borderRadius: BorderRadius.all(Radius.circular(15.0))
-           // ),
-         ),
+       FloatingActionButton(
+         onPressed: (){
+           _onTap();
+         },
+         child: Image.asset(
+             'assets/An_Icon/An_Top.png'),
+         backgroundColor: gray50,
        ),
      );
    }

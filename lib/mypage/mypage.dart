@@ -34,7 +34,8 @@ class _MyPageState extends State<MyPage> {
     return (user == null)
         ? Loading()
         : Scaffold(
-      appBar: CustomAppBarWithGoToBack('마이페이지', Icon(Icons.close), 0.5),
+      appBar: CustomAppBarWithGoToBack('마이페이지', Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body:
 

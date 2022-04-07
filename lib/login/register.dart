@@ -14,7 +14,8 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBarWithGoToBack('회원가입', Icon(Icons.arrow_back), 0.5),
+        appBar: CustomAppBarWithGoToBack('회원가입',  Image(
+            image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
         backgroundColor: Colors.white,
         body: Center(
           child: Column(
@@ -22,7 +23,7 @@ class _RegisterPageState extends State<RegisterPage> {
               SizedBox(
                 height: 40,
               ),
-              Text('내 약이 궁금할 땐'),
+              //Text('내 약이 궁금할 땐'),
               Container(
                 child: SizedBox(
                   child: Image.asset('assets/login/login_logo.png'),

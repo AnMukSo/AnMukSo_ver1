@@ -20,7 +20,8 @@ class RegisterWithEmailPageState extends State<RegisterWithEmailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithGoToBack('회원가입', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('회원가입',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: Builder(builder: (context) {
         return GestureDetector(

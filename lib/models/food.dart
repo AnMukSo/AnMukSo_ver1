@@ -15,6 +15,7 @@ class Food {
   final List searchNameList; //검색어 이름
 
   final String rankCategory; //카테고리
+  final num anRating; //안먹소 평가단 기준
 
   Food(
       {this.barCode,
@@ -31,7 +32,8 @@ class Food {
         this.totalRating,
         this.numOfReviews,
         this.searchNameList,
-        this.rankCategory
+        this.rankCategory,
+        this.anRating
       });
 }
 
@@ -74,6 +76,8 @@ class NewFood {
   final List searchNameList; //검색어 이름
 
   final String rankCategory; //카테고리
+  final num anRating; //안먹소 평가단 기준
+
 
   NewFood(
       {this.barCode,
@@ -90,6 +94,7 @@ class NewFood {
         this.totalRating,
         this.numOfReviews,
         this.searchNameList,
-        this.rankCategory
+        this.rankCategory,
+        this.anRating
       });
 }

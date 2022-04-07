@@ -16,10 +16,11 @@ bool _isThirdFilled = false;
 
 class GetHealthPage extends StatefulWidget {
   final String nickname;
-  final String birthYear;
-  final String sex;
+  // final String birthYear;
+  // final String sex;
 
-  const GetHealthPage({Key key, this.nickname, this.birthYear, this.sex})
+  const GetHealthPage({Key key, this.nickname,// this.birthYear, this.sex
+  })
       : super(key: key);
 
   @override
@@ -39,7 +40,8 @@ class _GetHealthPageState extends State<GetHealthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:
-            CustomAppBarWithGoToBack('키워드 알림 설정', Icon(Icons.arrow_back), 0.5),
+            CustomAppBarWithGoToBack('키워드 알림 설정',  Image(
+                image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
         backgroundColor: Colors.white,
         body: Builder(builder: (context) {
           return SingleChildScrollView(
@@ -378,7 +380,9 @@ class _GetHealthPageState extends State<GetHealthPage> {
             await DatabaseService(uid: user.uid).addUser(nowDT);
 
             await DatabaseService(uid: user.uid).updateUserPrivacy(
-                widget.nickname, widget.birthYear, widget.sex);
+                widget.nickname,
+                //widget.birthYear, widget.sex
+            );
 
             if (_isKeywordList[1] == true) _keywordList.add('임산부');
             if (_isKeywordList[2] == true) _keywordList.add('고령자');

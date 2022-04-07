@@ -12,8 +12,8 @@ import 'package:an_muk_so/theme/colors.dart';
 import 'package:intl/intl.dart';
 
 
-var birthYearMaskFormatter =
-    new MaskTextInputFormatter(mask: '####', filter: {"#": RegExp(r'[0-9]')});
+// var birthYearMaskFormatter =
+//     new MaskTextInputFormatter(mask: '####', filter: {"#": RegExp(r'[0-9]')});
 
 bool _isNicknameFilled = false;
 bool _isBirthYearFilled = false;
@@ -36,7 +36,8 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithGoToBack('개인정보 설정', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('개인정보 설정',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {
@@ -58,11 +59,11 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  birthYear(),
+                  //birthYear(),
                   SizedBox(
                     height: 20.0,
                   ),
-                  sex(),
+                  //sex(),
                   SizedBox(height: 50.0),
                   submit(context),
                 ],
@@ -114,7 +115,7 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
       ],
     );
   }
-
+/*
   Widget birthYear() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,29 +170,33 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
       ],
     );
   }
-
+*/
   Widget submit(context) {
     TheUser user = Provider.of<TheUser>(context);
 
     return AMSSubmitButton(
       context: context,
-      isDone: _isNicknameFilled && _isBirthYearFilled && _isGenderFilled,
+      isDone: _isNicknameFilled, //&& _isBirthYearFilled && _isGenderFilled,
       textString: '안먹소 시작하기',
       onPressed: () async {
-        if (_isNicknameFilled && _isBirthYearFilled && _isGenderFilled) {
+        if (_isNicknameFilled) {
+          //if (_isNicknameFilled && _isBirthYearFilled && _isGenderFilled) {
+
           // validation check
-          if (birthYearMaskFormatter.getUnmaskedText().length != 4) {
-            print(birthYearMaskFormatter.getUnmaskedText().length);
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                  '입력하신 항목을 다시 확인해주세요',
-                  textAlign: TextAlign.center,
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                behavior: SnackBarBehavior.floating,
-                backgroundColor: Colors.black.withOpacity(0.87)));
-          } else if (_nicknameController.text.length >= 10) {
+          // if (birthYearMaskFormatter.getUnmaskedText().length != 4) {
+          //   print(birthYearMaskFormatter.getUnmaskedText().length);
+          //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //       content: Text(
+          //         '입력하신 항목을 다시 확인해주세요',
+          //         textAlign: TextAlign.center,
+          //       ),
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.all(Radius.circular(8))),
+          //       behavior: SnackBarBehavior.floating,
+          //       backgroundColor: Colors.black.withOpacity(0.87)));
+          // }
+          //else
+           if (_nicknameController.text.length >= 10) {
             print(_nicknameController.text);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(
@@ -202,18 +207,21 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
                     borderRadius: BorderRadius.all(Radius.circular(8))),
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.black.withOpacity(0.87)));
-          } else if (2020 < int.parse(_birthYearController.text) ||
-              int.parse(_birthYearController.text) <= 1900) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text(
-                  '생년월일을 올바르게 입력해주세요',
-                  textAlign: TextAlign.center,
-                ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8))),
-                behavior: SnackBarBehavior.floating,
-                backgroundColor: Colors.black.withOpacity(0.87)));
-          } else {
+          }
+
+          // else if (2020 < int.parse(_birthYearController.text) ||
+          //     int.parse(_birthYearController.text) <= 1900) {
+          //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //       content: Text(
+          //         '생년월일을 올바르게 입력해주세요',
+          //         textAlign: TextAlign.center,
+          //       ),
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.all(Radius.circular(8))),
+          //       behavior: SnackBarBehavior.floating,
+          //       backgroundColor: Colors.black.withOpacity(0.87)));
+          // }
+          else {
             var result =
                 await DatabaseService().isUnique(_nicknameController.text);
             // if (_nicknameController.text == widget.userData.nickname)
@@ -243,7 +251,9 @@ class _GetPrivacyPageState extends State<GetPrivacyPage> {
               await DatabaseService(uid: user.uid).addUser(nowDT);
 
               await DatabaseService(uid: user.uid).updateUserPrivacy(
-                  _nicknameController.text, _birthYearController.text, _isSelected[0] ? 'male' : 'female');
+                  _nicknameController.text);
+                  //_birthYearController.text, _isSelected[0] ? 'male' : 'female');
+
 
               Navigator.of(context).pushNamedAndRemoveUntil(
                   '/start', (Route<dynamic> route) => false);

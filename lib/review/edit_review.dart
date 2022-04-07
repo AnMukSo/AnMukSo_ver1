@@ -462,7 +462,7 @@ class _EditReviewState extends State<EditReview> {
           mainAxisAlignment: MainAxisAlignment.center,
 //              crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("상품의 효과는 어땠나요?",
+            Text("상품은 어땠나요?",
                 style: Theme.of(context)
                     .textTheme
                     .headline5
@@ -731,9 +731,9 @@ class _EditReviewState extends State<EditReview> {
   Widget _textField(String type, TextEditingController myControllerEffect) {
     String hintText;
     if (type == "effect")
-      hintText = "효과에 대한 후기를 남겨주세요 (최소 10자 이상)\n";
+      hintText = "상품에 대한 후기를 남겨주세요 (최소 10자 이상)\n";
     else if (type == "sideEffect")
-      hintText = "부작용에 대한 후기를 남겨주세요 (최소 10자 이상)\n";
+      hintText = "알러지 반응에 대한 후기를 남겨주세요 (최소 10자 이상)\n";
     double bottom = 20;
     if (type == "overall") bottom = bottom + 70;
     return Padding(
@@ -787,9 +787,9 @@ class _EditReviewState extends State<EditReview> {
               myControllerSideEffect.text = "";
             else if (sideEffect ==
                 "yes") if (myControllerSideEffect.text.length < 10)
-              _warning = "부작용에 대한 리뷰를 10자 이상 \n작성해주세요";
+              _warning = "알러지 반응에 대한 리뷰를 10자 이상 \n작성해주세요";
             if (myControllerEffect.text.length < 10)
-              _warning = "효과에 대한 리뷰를 10자 이상 작성해주세요";
+              _warning = "상품에 대한 리뷰를 10자 이상 작성해주세요";
             if ((myControllerSideEffect.text.length < 10 &&
                     sideEffect == "yes") ||
                 myControllerEffect.text.length < 10)

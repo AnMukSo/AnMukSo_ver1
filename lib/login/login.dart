@@ -23,6 +23,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Builder(builder: (BuildContext context) {
         return ListView(
           scrollDirection: Axis.vertical,
@@ -58,7 +59,7 @@ class _EmailPasswordFormState extends State<_EmailPasswordForm> {
           children: <Widget>[
             Container(
               child: SizedBox(
-                child: Image.asset('assets/login/Title.png'),
+                child: Image.asset('assets/logo/An_Logo.png'),
                 width: 200,
                 height: 176,
               ),
@@ -126,17 +127,33 @@ class _EmailPasswordFormState extends State<_EmailPasswordForm> {
       cursorColor: primary400_line,
       decoration: textInputDecoration.copyWith(
           hintText: '비밀번호',
-          suffixIcon: IconButton(
-            icon: Icon(
-              Icons.visibility,
-              color: _isSecret ? gray200 : Colors.black87,
-            ),
-            onPressed: () {
-              setState(() {
-                _isSecret = !_isSecret;
-              });
-            },
-          )),
+          suffixIcon:
+          IconButton(
+              icon: _isSecret ?
+              SizedBox(
+                height: 25,
+                  child: Image(image: AssetImage('assets/An_Icon/An_Eye_Off.png'))) :
+              SizedBox(
+                  height: 25,
+                  child: Image(image: AssetImage('assets/An_Icon/An_Eye_On.png'))),
+              onPressed: () {
+                setState(() {
+                  _isSecret = !_isSecret;
+                });
+              }
+          ),
+          // IconButton(
+          //   icon: Icon(
+          //     Icons.visibility,
+          //     color: _isSecret ? gray200 : Colors.black87,
+          //   ),
+          //   onPressed: () {
+          //     setState(() {
+          //       _isSecret = !_isSecret;
+          //     });
+          //   },
+          // )
+      ),
       obscureText: _isSecret ? true : false,
       onChanged: (value) {
         if (value.isNotEmpty) {

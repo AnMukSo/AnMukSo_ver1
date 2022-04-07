@@ -66,7 +66,8 @@ class _GeneralEditState extends State<GeneralEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithGoToBack('유통기한 수정하기', Icon(Icons.close), 0.5),
+      appBar: CustomAppBarWithGoToBack('유통기한 수정하기',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: StreamBuilder<Food>(
         stream: DatabaseService(itemSeq: widget.foodItemSeq).foodData,

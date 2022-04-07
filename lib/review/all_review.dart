@@ -58,7 +58,8 @@ class _AllReveiewState extends State<AllReview> {
     return StreamProvider<List<Review>>.value(
       value: ReviewService().getReviews(widget.foodItemSeq),
       child: Scaffold(
-        appBar: CustomAppBarWithGoToBack(widget.itemName, Icon(Icons.arrow_back), 0.5),
+        appBar: CustomAppBarWithGoToBack(widget.itemName,  Image(
+            image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
           backgroundColor: gray0_white,
         body: CustomScrollView(
           slivers: [
@@ -113,7 +114,7 @@ class _AllReveiewState extends State<AllReview> {
                     Tab(child: Text('맛 평가 리뷰만',
                       style: TextStyle(fontSize: MediaQuery.of(context).size.width<=320 ? 11: 12),
                     )),
-                    Tab(child: Text('알러지 리뷰만',
+                    Tab(child: Text('알러지 반응 리뷰만',
                       style: TextStyle(fontSize: MediaQuery.of(context).size.width<=320 ? 11: 12),
                     )),
                   ],

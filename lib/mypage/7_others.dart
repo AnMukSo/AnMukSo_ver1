@@ -17,7 +17,8 @@ class Others extends StatelessWidget {
     return (user == null)
         ? LinearProgressIndicator()
         : Scaffold(
-            appBar: CustomAppBarWithGoToBack('기타', Icon(Icons.arrow_back), 0.5),
+            appBar: CustomAppBarWithGoToBack('기타',  Image(
+                image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
             backgroundColor: Colors.white,
             body: Column(
               children: [

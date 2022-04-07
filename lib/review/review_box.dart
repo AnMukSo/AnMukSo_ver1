@@ -31,7 +31,7 @@ class ReviewBox extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  type == "effect" ? "효과" : type == "sideEffect" ? "부작용" : "총평",
+                  type == "effect" ? "상품평가" : type == "sideEffect" ? "알러지 반응" : "총평",
                   style: Theme.of(context).textTheme.bodyText2.copyWith(
                       color: gray900, fontSize: 12),
                 ),

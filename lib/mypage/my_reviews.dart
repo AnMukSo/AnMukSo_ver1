@@ -36,7 +36,8 @@ class _MyReviewsState extends State<MyReviews> {
     TheUser user = Provider.of<TheUser>(context);
 
     return Scaffold(
-        appBar: CustomAppBarWithGoToBack('리뷰', Icon(Icons.arrow_back), 0.5),
+        appBar: CustomAppBarWithGoToBack('리뷰', Image(
+            image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
         backgroundColor: gray0_white,
         body: CustomScrollView(
           slivers: [

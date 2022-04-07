@@ -43,15 +43,16 @@ class _EditPrivacyPageState extends State<EditPrivacyPage> {
   void initState() {
     super.initState();
     _nicknameController.text = widget.userData.nickname;
-    _birthYearController.text = widget.userData.birthYear;
-    _isSelected =
-        (widget.userData.sex == 'female') ? [false, true] : [true, false];
+    //_birthYearController.text = widget.userData.birthYear;
+    // _isSelected =
+    //     (widget.userData.sex == 'female') ? [false, true] : [true, false];
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithGoToBack('회원정보 수정', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('회원정보 수정',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {
@@ -72,11 +73,11 @@ class _EditPrivacyPageState extends State<EditPrivacyPage> {
                   SizedBox(
                     height: 25.0,
                   ),
-                  birthYear(),
+                  //birthYear(),
                   SizedBox(
                     height: 25.0,
                   ),
-                  sex(),
+                  //sex(),
                   SizedBox(height: 50.0),
                   submit(context),
                 ],
@@ -122,60 +123,60 @@ class _EditPrivacyPageState extends State<EditPrivacyPage> {
     );
   }
 
-  Widget birthYear() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '출생년도',
-          style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray500),
-        ),
-        TextFormField(
-          controller: _birthYearController,
-          cursorColor: primary400_line,
-          decoration: textInputDecoration.copyWith(hintText: '출생년도 4자리'),
-          style: Theme.of(context).textTheme.headline5.copyWith(color: gray900),
-          keyboardType: TextInputType.number,
-          inputFormatters: [birthYearMaskFormatter],
-          onChanged: (value) {
-            if (value.length == 4) {
-              setState(() {
-                _isBirthYearFilled = true;
-              });
-            } else {
-              setState(() {
-                _isBirthYearFilled = false;
-              });
-            }
-          },
-          validator: (String value) {
-            if (value.isEmpty) return "출생년도를 입력하세요.";
-            return null;
-          },
-        ),
-      ],
-    );
-  }
-
-  Widget sex() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          '성별',
-          style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray500),
-        ),
-        SizedBox(height: 5),
-        Row(
-          children: [
-            exclusiveButton(0, _isSelected, '남'),
-            SizedBox(width: 10),
-            exclusiveButton(1, _isSelected, '여'),
-          ],
-        ),
-      ],
-    );
-  }
+  // Widget birthYear() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         '출생년도',
+  //         style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray500),
+  //       ),
+  //       TextFormField(
+  //         controller: _birthYearController,
+  //         cursorColor: primary400_line,
+  //         decoration: textInputDecoration.copyWith(hintText: '출생년도 4자리'),
+  //         style: Theme.of(context).textTheme.headline5.copyWith(color: gray900),
+  //         keyboardType: TextInputType.number,
+  //         inputFormatters: [birthYearMaskFormatter],
+  //         onChanged: (value) {
+  //           if (value.length == 4) {
+  //             setState(() {
+  //               _isBirthYearFilled = true;
+  //             });
+  //           } else {
+  //             setState(() {
+  //               _isBirthYearFilled = false;
+  //             });
+  //           }
+  //         },
+  //         validator: (String value) {
+  //           if (value.isEmpty) return "출생년도를 입력하세요.";
+  //           return null;
+  //         },
+  //       ),
+  //     ],
+  //   );
+  // }
+  //
+  // Widget sex() {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       Text(
+  //         '성별',
+  //         style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray500),
+  //       ),
+  //       SizedBox(height: 5),
+  //       Row(
+  //         children: [
+  //           exclusiveButton(0, _isSelected, '남'),
+  //           SizedBox(width: 10),
+  //           exclusiveButton(1, _isSelected, '여'),
+  //         ],
+  //       ),
+  //     ],
+  //   );
+  // }
 
   Widget submit(context) {
     TheUser user = Provider.of<TheUser>(context);
@@ -225,8 +226,8 @@ class _EditPrivacyPageState extends State<EditPrivacyPage> {
               } else {
                 await DatabaseService(uid: user.uid).updateUserPrivacy(
                   _nicknameController.text,
-                  _birthYearController.text,
-                  _isSelected[0] ? 'male' : 'female',
+                  //_birthYearController.text,
+                  //_isSelected[0] ? 'male' : 'female',
                 );
 
                 // await ReviewService().updateNickname(

@@ -87,6 +87,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   //새로운 제품
                   Container(
+                    height: 28,
                     alignment: Alignment.topLeft,
                     color: Colors.white,
                     child: Text(
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                     padding: EdgeInsets.only(top: 30),
                   ),
                   Container(
-                    height: 25,
+                    height: 30,
                     alignment: Alignment.centerLeft,
                     //padding: EdgeInsets.only(left: 3),
                     color: Colors.white,

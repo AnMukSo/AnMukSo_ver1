@@ -1156,7 +1156,7 @@ class _CartPageState extends State<CartPage> {
                 },
                 child: Center(
                     child: Text(
-                      "유통기한 수정하기",
+                      "구입날짜 수정하기",
                       style: Theme.of(context)
                           .textTheme
                           .bodyText1

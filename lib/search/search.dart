@@ -638,7 +638,8 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithGoToBack('상품 검색', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('상품 검색',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {

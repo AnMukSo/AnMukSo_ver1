@@ -83,6 +83,7 @@ class DatabaseService {
           searchNameList: doc.data()['searchNameList'] ?? [],
           rankCategory: doc.data()['RANK_CATEGORY'] ?? '',
           itemCountry: doc.data()['ITEM_COUNTRY'] ?? '',
+          anRating: doc.data()['An_Rating'] ?? 0,
 
       );
     }).toList();
@@ -109,6 +110,7 @@ class DatabaseService {
       numOfReviews: snapshot.data()['numOfReviews'] ?? 0,
         rankCategory: snapshot.data()['RANK_CATEGORY'] ?? '',
       itemCountry: snapshot.data()['ITEM_COUNTRY'] ?? '',
+      anRating: snapshot.data()['An_Rating'] ?? 0,
 
     );
   }
@@ -175,11 +177,12 @@ class DatabaseService {
   }
 
   // update user doc
-  Future<void> updateUserPrivacy(nickname, birthYear, sex) async {
-    return await userCollection.doc(uid).update({
+  //Future<void> updateUserPrivacy(nickname, birthYear, sex) async {
+    Future<void> updateUserPrivacy(nickname) async {
+      return await userCollection.doc(uid).update({
       'nickname': nickname ?? '',
-      'birthYear': birthYear ?? '',
-      'sex': sex ?? '',
+      // 'birthYear': birthYear ?? '',
+      // 'sex': sex ?? '',
     });
   }
 
