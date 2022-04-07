@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '1'
+    flutterVersionCode = '2'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0'
+    flutterVersionName = '1.0.1'
 }
 
 apply plugin: 'com.android.application'
@@ -27,11 +27,11 @@ apply plugin: 'com.google.gms.google-services'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 //key관련해서 쓸 때 활용해야 하는 코드임
-//def keystoreProperties = new Properties()
-//def keystorePropertiesFile = rootProject.file('key.properties')
-//if (keystorePropertiesFile.exists()) {
-//    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-//}
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
 
 
 android {
@@ -39,7 +39,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.an_muk_so"
+        applicationId "com.an_muk_so"
         minSdkVersion 21
         targetSdkVersion 30
         multiDexEnabled true
@@ -47,26 +47,26 @@ android {
         versionName flutterVersionName
     }
 //key관련해서 쓸 때 활용해야 하는 코드임
-//    signingConfigs {
-//        release {
-//            keyAlias keystoreProperties['keyAlias']
-//            keyPassword keystoreProperties['keyPassword']
-//            storeFile file(keystoreProperties['storeFile'])
-//            storePassword keystoreProperties['storePassword']
-//        }
-//    }
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
 
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
 
             minifyEnabled true
             //이건 아마 플레이스토어에 업로드 하려면 필요한 절차
-            // useProguard true
-            // proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            useProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
         }
     }
@@ -90,5 +90,7 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
+    def billing_version = "3.0.0"
+    implementation "com.android.billingclient:billing:$billing_version"
 
 }
