@@ -41,7 +41,8 @@ class _InquiryPageState extends State<InquiryPage> {
 
     return Scaffold(
       key: _scaffoldKey,
-      appBar: CustomAppBarWithGoToBack('1:1 문의', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('1:1 문의',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -89,7 +90,7 @@ class _InquiryPageState extends State<InquiryPage> {
                     DropdownMenuItem(
                       value: 1,
                       child: Text(
-                        '1. 의약품 정보 문의 및 요청',
+                        '1. 상품 정보 문의 및 요청',
                         style: Theme.of(context)
                             .textTheme
                             .bodyText2

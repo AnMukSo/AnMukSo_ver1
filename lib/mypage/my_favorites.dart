@@ -22,7 +22,8 @@ class _MyFavoritesState extends State<MyFavorites> {
     TheUser user = Provider.of<TheUser>(context);
 
     return Scaffold(
-        appBar: CustomAppBarWithGoToBack('찜', Icon(Icons.arrow_back), 0.5),
+        appBar: CustomAppBarWithGoToBack('찜',  Image(
+            image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(

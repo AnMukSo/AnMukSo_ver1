@@ -9,7 +9,7 @@ class CustomAppBarWithGoToBack extends StatelessWidget
   final Size preferredSize;
 
   final String title;
-  final Icon customIcon;
+  final Image customIcon;
   final double elevation;
 
   CustomAppBarWithGoToBack(
@@ -32,7 +32,10 @@ class CustomAppBarWithGoToBack extends StatelessWidget
       backgroundColor: Colors.white,
       automaticallyImplyLeading: false,
       leading: IconButton(
-        icon: customIcon,
+        icon: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: customIcon,
+        ),
         color: primary300_main,
         onPressed: () {
           Navigator.pop(context);
@@ -47,7 +50,7 @@ class CustomAppBarWithGoToRanking extends StatelessWidget
   final Size preferredSize;
 
   final String title;
-  final Icon customIcon;
+  final Image customIcon;
   final double elevation;
   final String filter;
   final String category;
@@ -75,7 +78,10 @@ class CustomAppBarWithGoToRanking extends StatelessWidget
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: customIcon,
+          icon: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: customIcon,
+          ),
           color: primary300_main,
           onPressed: () {
             Navigator.pop(context);
@@ -104,7 +110,10 @@ class CustomAppBarWithGoToRanking extends StatelessWidget
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          icon: customIcon,
+          icon: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: customIcon,
+          ),
           color: primary300_main,
           onPressed: () {
             Navigator.pop(context);
@@ -172,12 +181,17 @@ class CustomAppBarWithArrowBackAndSearch extends StatelessWidget
     ),)
         //for test home
       ],
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        color: primary300_main,
-        onPressed: () {
-          Navigator.pop(context);
-        },
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          //icon: Icon(Icons.arrow_back),
+          icon: Image.asset(
+              'assets/An_Icon/An_Back.png'),
+          //color: primary300_main,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
     );
   }
@@ -202,24 +216,41 @@ class ResultAppBarBarcode extends StatelessWidget with PreferredSizeWidget {
       titleSpacing: 0,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back),
-        color: primary300_main,
-        onPressed: () {
-          Navigator.pop(context);
-        },
+      leading: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: IconButton(
+          //icon: Icon(Icons.arrow_back),
+          icon: Image.asset(
+              'assets/An_Icon/An_Back.png'),
+          //color: primary300_main,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       actions: [
+
         Padding(
-          padding: const EdgeInsets.only(right: 10.0),
+          padding: const EdgeInsets.only(left: 8.0),
           child: IconButton(
-              icon: ImageIcon(
-                AssetImage('assets/icons/home_icon.png'),
-                color: primary300_main,
-                // color: gray100,
-              ),
+            //icon: Icon(Icons.arrow_back),
+            icon: Image.asset(
+                'assets/An_Icon/An_Home.png'),
+            //color: primary300_main,
               onPressed: () => Navigator.pushNamed(context, '/bottom_bar')),
-        ),
+
+          ),
+        //),
+        // Padding(
+        //   padding: const EdgeInsets.only(right: 10.0),
+        //   child: IconButton(
+        //       icon: ImageIcon(
+        //         AssetImage('assets/An_Icon/An_Top.png'),
+        //         color: primary300_main,
+        //         // color: gray100,
+        //       ),
+        //       onPressed: () => Navigator.pushNamed(context, '/bottom_bar')),
+        // ),
         //for test home
       ],
     );

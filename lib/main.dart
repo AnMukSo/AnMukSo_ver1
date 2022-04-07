@@ -13,10 +13,14 @@ import 'login/login.dart';
 import 'ranking/ranking.dart';
 import 'package:an_muk_so/models/user.dart';
 import 'package:an_muk_so/wrapper.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  // if (defaultTargetPlatform == TargetPlatform.android) {
+  //   InAppPurchaseAndroidPlatformAddition.enablePendingPurchases();
+  // }
   runApp(MyApp());
 }
 

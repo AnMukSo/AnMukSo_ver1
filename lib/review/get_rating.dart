@@ -85,7 +85,7 @@ class _GetRatingState extends State<GetRating> {
                                 child: Row(children: [
                                   Row(
                                     children: [
-                                      Image.asset('assets/icons/star.png',
+                                      Image.asset('assets/An_Icon/An_Star_On.png',
                                         width: 28, height: 28,),
                                       Container(width: 5),
                                       Text("",
@@ -119,21 +119,19 @@ class _GetRatingState extends State<GetRating> {
                               ),
 
 
-
-
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text(good == 0 && soso == 0 && bad == 0 ? "" : "효과  ",
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                      Text(good == 0 && soso == 0 && bad == 0 ? "" : "상품평가  ",
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                             color: gray600,
                                           )),
                                       Container(height: 6),
-                                      Text(good == 0 && soso == 0 && bad == 0 ? "" : "부작용  ",
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                      Text(good == 0 && soso == 0 && bad == 0 ? "" : "알러지 반응",
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                             color: gray600,
                                           )),
                                     ],
@@ -147,12 +145,12 @@ class _GetRatingState extends State<GetRating> {
                                       RichText(
                                         textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                             color: gray300_inactivated),
                                           children: <TextSpan>[
                                             TextSpan(
                                               text: good == 0 && soso == 0 && bad == 0 ? "" : "별로에요  ",
-                                              style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                              style: Theme.of(context).textTheme.subtitle2.copyWith(
                                                 color: gray600,)),
                                             TextSpan(
                                               text:good == 0 && soso == 0 && bad == 0 ? "" :
@@ -165,12 +163,12 @@ class _GetRatingState extends State<GetRating> {
                                       RichText(
                                         textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                               color: gray300_inactivated),
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: good == 0 && soso == 0 && bad == 0 ? "" : "보통이에요  ",
-                                                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                                style: Theme.of(context).textTheme.subtitle2.copyWith(
                                                   color: gray600,)),
                                             TextSpan(
                                                 text:good == 0 && soso == 0 && bad == 0 ? "" :
@@ -182,12 +180,12 @@ class _GetRatingState extends State<GetRating> {
                                       RichText(
                                         textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                               color: gray300_inactivated),
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: good == 0 && soso == 0 && bad == 0 ? "" : "좋아요  ",
-                                                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                                style: Theme.of(context).textTheme.subtitle2.copyWith(
                                                   color: gray600,)),
                                             TextSpan(
                                                 text:good == 0 && soso == 0 && bad == 0 ? "" :
@@ -202,12 +200,12 @@ class _GetRatingState extends State<GetRating> {
                                       RichText(
                                         textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                               color: gray300_inactivated),
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: good == 0 && soso == 0 && bad == 0 ? "" : "있어요  ",
-                                                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                                style: Theme.of(context).textTheme.subtitle2.copyWith(
                                                   color: gray600,)),
                                             TextSpan(
                                                 text:good == 0 && soso == 0 && bad == 0 ? "" :
@@ -219,12 +217,12 @@ class _GetRatingState extends State<GetRating> {
                                       RichText(
                                         textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                          style: Theme.of(context).textTheme.subtitle2.copyWith(
                                               color: gray300_inactivated),
                                           children: <TextSpan>[
                                             TextSpan(
                                                 text: good == 0 && soso == 0 && bad == 0 ? "" : "없어요  ",
-                                                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                                                style: Theme.of(context).textTheme.subtitle2.copyWith(
                                                   color: gray600,)),
                                             TextSpan(
                                                 text:good == 0 && soso == 0 && bad == 0 ? "" :
@@ -236,6 +234,7 @@ class _GetRatingState extends State<GetRating> {
                                   ),
                                 ],
                               ),
+
                             ],
                           ),
                         ],

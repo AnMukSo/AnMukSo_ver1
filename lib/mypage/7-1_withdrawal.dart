@@ -23,7 +23,8 @@ class _WithdrawalPageState extends State<WithdrawalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBarWithGoToBack('회원 탈퇴', Icon(Icons.arrow_back), 0.5),
+        appBar: CustomAppBarWithGoToBack('회원 탈퇴',  Image(
+            image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
         backgroundColor: Colors.white,
         body: Column(
           children: [

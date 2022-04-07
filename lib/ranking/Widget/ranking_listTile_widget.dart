@@ -51,7 +51,7 @@ class RankingTile extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               Food foodStreamData = snapshot.data;
-              String foodRating = foodStreamData.totalRating.toStringAsFixed(2);
+              String foodRating = foodStreamData.anRating.toStringAsFixed(1);
               return Container(
                 decoration: BoxDecoration(
                     border:
@@ -108,7 +108,7 @@ class RankingTile extends StatelessWidget {
                                 ),
                                 Row(
                                   children: [
-                                    _getRateStar(foodStreamData.totalRating),
+                                    _getRateStar(foodStreamData.anRating),
                                     SizedBox(
                                       width: 8,
                                     ),

@@ -14,7 +14,8 @@ class _NoticePageState extends State<NoticePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //TODO:이부분에 공지사항 데이터 넣어두기!
-      appBar: CustomAppBarWithGoToBack('공지사항', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('공지사항',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: StreamBuilder(
         stream: DatabaseService().noticeData,

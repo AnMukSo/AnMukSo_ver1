@@ -17,7 +17,7 @@ class FirebaseApi {
       case "별점순":
         if(getCategory == '전체'){
           refFoods = refFoods
-              .orderBy('totalRating', descending: true)
+             // .orderBy('totalRating', descending: true)
               .orderBy('ITEM_NAME', descending: false)
               .limit(limit);
         }
@@ -25,7 +25,7 @@ class FirebaseApi {
 
           refFoods = refFoods
               .where('RANK_CATEGORY', isEqualTo: getCategory) //;
-              .orderBy('totalRating', descending: true)
+            //  .orderBy('totalRating', descending: true)
               .orderBy('ITEM_NAME', descending: false)
               .limit(limit);
         }

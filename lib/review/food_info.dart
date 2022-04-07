@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:an_muk_so/bottom_bar_navigation.dart';
 
 import 'package:an_muk_so/expiration/general_expiration.dart';
+
 // import 'package:an_muk_so/food_info/prepared_expiration.dart';
 // import 'package:an_muk_so/food_info/search_highlighting.dart';
 // import 'package:an_muk_so/food_info/warning_highlighting.dart';
@@ -35,7 +36,6 @@ import 'package:an_muk_so/shared/shortcut_dialog.dart';
 
 import 'package:an_muk_so/theme/colors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-
 
 List infoEE;
 List infoNB;
@@ -93,7 +93,6 @@ class _ReviewPageState extends State<ReviewPage> {
     super.initState();
   }
 
-
   void _onTapInfo() {
     _scrollController.animateTo(_getInfoSize(),
         duration: Duration(milliseconds: 400), curve: Curves.easeOut);
@@ -125,7 +124,6 @@ class _ReviewPageState extends State<ReviewPage> {
     return _ifZeroReview;
   }
 
-
   @override
   Widget build(BuildContext context) {
     TheUser user = Provider.of<TheUser>(context);
@@ -143,16 +141,19 @@ class _ReviewPageState extends State<ReviewPage> {
     return Scaffold(
         backgroundColor: gray0_white,
         appBar: check
-            ? CustomAppBarWithGoToRanking('상품 정보', Icon(Icons.arrow_back), 0.5,
+            ? CustomAppBarWithGoToRanking('상품 정보',  Image(
+            image: AssetImage('assets/An_Icon/An_Back.png')), 0.5,
                 filter: filter, category: rankingCategory)
-            : CustomAppBarWithGoToRanking('상품 정보', Icon(Icons.arrow_back), 0.5),
+            : CustomAppBarWithGoToRanking('상품 정보',  Image(
+            image: AssetImage('assets/An_Icon/An_Back.png')), 0.5),
         floatingActionButton: FloatingActionButton(
-           // child: Icon(Icons.create),
-          //child: ImageIcon(AssetImage('assets/An_Icon/An_Write.png'), color: Colors.red),
-           child: SizedBox(
+            // child: Icon(Icons.create),
+            //child: ImageIcon(AssetImage('assets/An_Icon/An_Write.png'), color: Colors.red),
+            child: SizedBox(
                 height: 50,
                 width: 50,
-                child: Image(image: AssetImage('assets/an_icon_resize/An_Write.png'))),
+                child: Image(
+                    image: AssetImage('assets/an_icon_resize/An_Write.png'))),
             backgroundColor: primary300_main,
             elevation: 6.0,
             onPressed: () async {
@@ -212,8 +213,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                                                 ? primary300_main
                                                                 : gray300_inactivated,
                                                           ))),
-                                              onTap: _onTapInfo
-                                              ),
+                                              onTap: _onTapInfo),
                                           width: MediaQuery.of(context)
                                                   .size
                                                   .width /
@@ -236,8 +236,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                                         .textTheme
                                                         .subtitle1
                                                         .copyWith(
-                                                          color: InfoTab ==
-                                                                  true
+                                                          color: InfoTab == true
                                                               ? gray300_inactivated
                                                               : primary300_main,
                                                         ))),
@@ -251,8 +250,8 @@ class _ReviewPageState extends State<ReviewPage> {
                                               border: Border(
                                                   bottom: BorderSide(
                                                       //color: pillInfoTab == true
-                                                    color: InfoTab == true
-                                                     ? gray100
+                                                      color: InfoTab == true
+                                                          ? gray100
                                                           : primary300_main,
                                                       width: InfoTab == true
                                                           ? 1.0
@@ -266,7 +265,8 @@ class _ReviewPageState extends State<ReviewPage> {
                                   ),
                                   SliverToBoxAdapter(
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       SizedBox(height: 10),
                                       _underInfo(context, food, userData),
@@ -356,11 +356,11 @@ class _ReviewPageState extends State<ReviewPage> {
                       SizedBox(height: 10),
                       Row(children: <Widget>[
                         RatingBarIndicator(
-                          rating: food.totalRating * 1.0,
+                          rating: food.anRating * 1.0,
                           itemBuilder: (context, index) =>
-                          //TODO: icons에 star이 없는 걸로 아는데 넣어두기
+                              //TODO: icons에 star이 없는 걸로 아는데 넣어두기
                               ImageIcon(
-                            AssetImage('assets/icons/star.png'),
+                            AssetImage('assets/An_Icon/An_Star_On.png'),
                             color: yellow,
                           ),
                           itemCount: 5,
@@ -370,18 +370,24 @@ class _ReviewPageState extends State<ReviewPage> {
                           itemPadding: EdgeInsets.symmetric(horizontal: 0.5),
                         ),
                         Container(width: 5),
-                        Text(food.totalRating.toStringAsFixed(1),
+                        Text(food.anRating.toStringAsFixed(1),
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       color: gray900,
                                     )),
-                        Text(" (" + food.numOfReviews.toStringAsFixed(0) + '개)',
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle2
-                                .copyWith(
-                                    color: gray300_inactivated, fontSize: 12)),
-                        Text(' 안먹소 평가단 기준', style: Theme.of(context).textTheme.subtitle1.copyWith(color: gray700, fontSize: 12),)
+                        // Text(" (" + food.numOfReviews.toStringAsFixed(0) + '개)',
+                        //     style: Theme.of(context)
+                        //         .textTheme
+                        //         .subtitle2
+                        //         .copyWith(
+                        //             color: gray300_inactivated, fontSize: 12)),
+                        Text(
+                          ' 안먹소 평가단 기준',
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle1
+                              .copyWith(color: gray700, fontSize: 12),
+                        )
                       ]),
                       Row(
                           mainAxisSize: MainAxisSize.min,
@@ -390,7 +396,8 @@ class _ReviewPageState extends State<ReviewPage> {
                             Container(
                                 height: 24,
                                 child: InFoCategoryButton(
-                                    str: food.rankCategory, fromFoodInfo: true)),
+                                    str: food.rankCategory,
+                                    fromFoodInfo: true)),
                             Expanded(
                               child: Container(),
                             ),
@@ -403,7 +410,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                   ShortCutDialog(
                                     context: context,
                                     dialogIcon:
-                                         Icon(Icons.favorite, color: warning),
+                                        Icon(Icons.favorite, color: warning),
                                     boldBodyString: '찜 목록',
                                     normalBodyString: '에 추가되었습니다',
                                     //topButtonName: '바로가기',
@@ -434,18 +441,12 @@ class _ReviewPageState extends State<ReviewPage> {
                                   color: gray50,
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
-                                child:
-                                IconButton(
-                                  icon: _isFavorite
-                                         ? ImageIcon(
-                                    AssetImage('assets/An_Icon/An_Heart_On.png'),
-                                    color: warning,
-                                  )
-                                        : ImageIcon(
-                                    AssetImage('assets/An_Icon/An_Heart_Off.png'),
-                                    color: gray300_inactivated
-                                  ),
-                                ),
+                                child: IconButton(
+                                    icon: _isFavorite
+                                        ? Image.asset(
+                                            'assets/An_Icon/An_Heart_On.png')
+                                        : Image.asset(
+                                            'assets/An_Icon/An_Heart_Off.png')),
                                 // Icon(
                                 //   _isFavorite
                                 //       ? Icons.favorite
@@ -455,7 +456,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                 //       : gray300_inactivated,
                                 //   size: 24,
                                 //   )
-                               ),
+                              ),
                             ),
                             Container(
                               width: 8,
@@ -495,8 +496,7 @@ class _ReviewPageState extends State<ReviewPage> {
                                           width: 24,
                                           height: 24,
                                           child: Image.asset(
-                                              'assets/icons/warning_icon_primary.png')
-                                      ),
+                                              'assets/icons/warning_icon_primary.png')),
                                       boldBodyString: '',
                                       normalBodyString: '이미 담은 상품입니다',
                                       //topButtonName: '나의 상품 보관함 바로가기',
@@ -520,9 +520,9 @@ class _ReviewPageState extends State<ReviewPage> {
                                         MaterialPageRoute(
                                             fullscreenDialog: true,
                                             builder: (context) {
-                                                return GeneralExpiration(
-                                                  foodItemSeq: food.itemSeq,
-                                                );
+                                              return GeneralExpiration(
+                                                foodItemSeq: food.itemSeq,
+                                              );
                                             }));
                                   }
                                 },
@@ -563,7 +563,6 @@ class _ReviewPageState extends State<ReviewPage> {
     return newName;
   }
 
-
   /* Under Information */
   Widget _underInfo(BuildContext context, Food food, UserData userData) {
     return Padding(
@@ -589,8 +588,8 @@ class _ReviewPageState extends State<ReviewPage> {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: Text('원산지',
                   style: Theme.of(context).textTheme.subtitle1.copyWith(
-                    color: gray750_activated,
-                  )),
+                        color: gray750_activated,
+                      )),
             ),
             Text(food.itemCountry,
                 style: Theme.of(context)
@@ -598,10 +597,10 @@ class _ReviewPageState extends State<ReviewPage> {
                     .bodyText2
                     .copyWith(color: gray600, height: 1.6)),
             SizedBox(height: 22),
-
           ]),
     );
   }
+
 /*
   Widget _foodDocInfo(BuildContext context, String foodItemSeq, String type) {
     return StreamBuilder<Food>(
@@ -686,8 +685,6 @@ class _ReviewPageState extends State<ReviewPage> {
                 ),
               ),
               Container(width: 5),
-
-
             ],
           ),
         ),
@@ -697,7 +694,6 @@ class _ReviewPageState extends State<ReviewPage> {
 
   /* Review */
   Widget _drugReviews() {
-
     return StreamBuilder<Food>(
         stream: DatabaseService(itemSeq: widget.foodItemSeq).foodData,
         builder: (context, snapshot) {
@@ -772,13 +768,21 @@ class _ReviewPageState extends State<ReviewPage> {
                             Column(
                               children: [
                                 Center(
-                                  child: Text("아직 작성된 리뷰가 없어요",
-                                    style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray300_inactivated),
+                                  child: Text(
+                                    "아직 작성된 리뷰가 없어요",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        .copyWith(color: gray300_inactivated),
                                   ),
                                 ),
                                 Center(
-                                  child: Text("리뷰를 작성해주세요",
-                                    style: Theme.of(context).textTheme.subtitle2.copyWith(color: gray300_inactivated),
+                                  child: Text(
+                                    "리뷰를 작성해주세요",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        .copyWith(color: gray300_inactivated),
                                   ),
                                 ),
                               ],
@@ -815,7 +819,8 @@ class _ReviewPageState extends State<ReviewPage> {
                         width: 10,
                         child: Padding(
                           padding: const EdgeInsets.only(top: 4.0, bottom: 4),
-                          child: Image.asset('assets/an_icon_resize/An_Search.png'),
+                          child: Image.asset(
+                              'assets/an_icon_resize/An_Search.png'),
                         ),
                       ),
                       hintText: '어떤 리뷰를 찾고계세요?',
@@ -930,5 +935,4 @@ class _ReviewPageState extends State<ReviewPage> {
       },
     );
   }
-
 }

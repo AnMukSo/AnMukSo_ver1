@@ -34,10 +34,9 @@ class _NoResultState extends State<NoResult> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: ImageIcon(
-                AssetImage('assets/icons/home_icon.png'),
-                color: primary300_main,
-                // color: gray100,
+              icon: Container(height: 30,
+                child: Image.asset(
+                    'assets/An_Icon/An_Home.png'),
               ),
               label: Text("홈으로 돌아가기",
                 style: Theme.of(context)

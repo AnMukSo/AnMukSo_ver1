@@ -720,9 +720,9 @@ class _ReviewListState extends State<ReviewList> {
               children: [
                 Text(
                   type == "effect"
-                      ? "효과"
+                      ? "상품평가"
                       : type == "sideEffect"
-                          ? "부작용"
+                          ? "알러지 반응"
                           : "총평",
                   style: Theme.of(context)
                       .textTheme

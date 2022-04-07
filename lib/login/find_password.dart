@@ -20,7 +20,8 @@ class _FindPasswordState extends State<FindPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBarWithGoToBack('비밀번호 재설정', Icon(Icons.arrow_back), 0.5),
+      appBar: CustomAppBarWithGoToBack('비밀번호 재설정',  Image(
+          image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
       backgroundColor: Colors.white,
       body: Builder(builder: (context) {
         return GestureDetector(

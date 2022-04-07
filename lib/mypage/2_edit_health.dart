@@ -77,7 +77,8 @@ class _EditHealthPageState extends State<EditHealthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar:
-            CustomAppBarWithGoToBack('키워드 알림 설정', Icon(Icons.arrow_back), 0.5),
+            CustomAppBarWithGoToBack('키워드 알림 설정',  Image(
+                image: AssetImage('assets/an_icon_resize/An_Back.png')), 0.5),
         backgroundColor: Colors.white,
         body: Builder(builder: (ctx) {
           return SingleChildScrollView(
