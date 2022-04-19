@@ -41,7 +41,7 @@ class _Subscription extends State<Subscription> {
   void dispose() {
     var provider = Provider.of<ProviderModel>(context, listen: false);
     provider.subscription.cancel();
-    //super.dispose();
+    super.dispose();
   }
 
   @override
