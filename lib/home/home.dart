@@ -191,20 +191,13 @@ class _HomePageState extends State<HomePage> {
           }
           String content = snapshot.data.data()['title'];
 
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        content,
-                        style: Theme.of(context).textTheme.subtitle1,
-                      )
-                    ],
-                  )),
-            ],
+          return Container(
+            width: double.infinity - 32,
+            child: Text(
+              content,
+              style: Theme.of(context).textTheme.subtitle1,
+              overflow: TextOverflow.ellipsis,
+            ),
           );
         });
   }
