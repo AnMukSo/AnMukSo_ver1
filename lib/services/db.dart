@@ -21,6 +21,19 @@ class DatabaseService {
   Stream<List<Food>> foodsSnapshots;
   Stream<List<SavedFood>> foodsFromUserSnapshots;
 
+  ///정기 구독을 위한 것 (1)
+  Future<void> updateSubscribeUser(subscribe) async {
+    return await userCollection.doc(uid).update({
+      'subscribe': subscribe ?? 'not yet',
+    });
+  }
+
+  ///정기 구독을 위한 것 (2)
+  Future<String> getSubscribe() async {
+    DocumentSnapshot ds = await userCollection.doc(uid).get();
+    return ds.data()["subscribe"];
+  }
+
 
   Stream<List<Food>> setForSearch(String searchVal, int limit) {
     foodQuery = foodQuery
@@ -158,6 +171,9 @@ class DatabaseService {
       //selfKeywordList: snapshot.data()['selfKeywordList'] ?? [],
       favoriteList: snapshot.data()['favoriteList'] ?? [],
       searchList: snapshot.data()['searchList'] ?? [],
+      ///정기 구독 시스템 어플을 위한 것
+      subscribe: snapshot.data()['subscribe'] ?? 'not yet',
+
     );
   }
 
