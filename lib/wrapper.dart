@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:an_muk_so/subscribe.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:an_muk_so/initial/1_policy_agree.dart';
@@ -25,8 +26,12 @@ class Wrapper extends StatelessWidget {
             // return BottomBar();
 
             if (snapshot.data == false) {
-              return PolicyAgreePage();
+              ///정기 구독 시스템일 경우에만
+              return SubscriptionScreen();
+              ///정기 구독 시스템일 경우에만
+              //return PolicyAgreePage();
             } else {
+              //return SubscriptionScreen(); //TODO 지금 다시 적용
               return BottomBar();
             }
           });
