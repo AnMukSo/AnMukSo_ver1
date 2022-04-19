@@ -1,4 +1,4 @@
-class TheUser {
+class                                         TheUser {
   final String uid;
 
   TheUser({this.uid});
@@ -19,6 +19,9 @@ class UserData {
   final List favoriteList;
   final List searchList;
 
+  //정기 구독 위한 거
+  final String subscribe; //done( == 구독 완료) / not yet( == 구독 안됨)
+
   UserData(
       {this.uid,
         this.agreeDate,
@@ -29,7 +32,9 @@ class UserData {
         this.keywordList,
         this.selfKeywordList,
         this.favoriteList,
-        this.searchList});
+        this.searchList,
+        this.subscribe,
+      });
 }
 
 class Lists {
