@@ -1,3 +1,4 @@
+import 'package:an_muk_so/subscribe.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -18,9 +19,11 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // if (defaultTargetPlatform == TargetPlatform.android) {
-  //   InAppPurchaseAndroidPlatformAddition.enablePendingPurchases();
-  // }
+
+  ///정기 구독 결제 시스템 추가 코드
+  InAppPurchaseConnection.enablePendingPurchases();
+
+
   runApp(MyApp());
 }
 
@@ -43,6 +46,7 @@ class MyApp extends StatelessWidget {
             '/ranking': (context) => RankingPage(),
             '/bottom_bar': (context) => BottomBar(),
             '/search': (context) => SearchScreen(),
+            '/subscribe': (context) => SubscriptionScreen(),
           },
           theme: _AMSTheme),
     );
