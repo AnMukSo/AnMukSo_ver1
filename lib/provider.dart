@@ -9,7 +9,7 @@ class ProviderModel with ChangeNotifier {
   InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
   bool available = true;
   StreamSubscription subscription;
-  final String myProductID = 'sub_monthly_30';
+  final String myProductID = 'month_30';
 
 
   bool _isPurchased = false;

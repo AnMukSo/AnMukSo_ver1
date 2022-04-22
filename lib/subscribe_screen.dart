@@ -43,9 +43,10 @@ class _HomeScreenState extends State<SubscribeHomeScreen> {
       if (provider.isPurchased) {
         DatabaseService(uid: user.uid).updateSubscribeUser('done');
       }
-      //구독이 안 되어있으면
+      //구독이 안 되어있으면 어떻게 하나 이건 한달뒤에 체크 가능
       else {
-        DatabaseService(uid: user.uid).updateSubscribeUser('not yet');
+        //미리 결제 했던 사람들에 한에서
+       // DatabaseService(uid: user.uid).updateSubscribeUser('not yet');
       }
     }
 
