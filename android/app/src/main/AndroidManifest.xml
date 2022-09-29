@@ -1,9 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.an_muk_so">
-   <application
-        android:label="an_muk_so"
+    package="com.an_muk_so_ver1">
+    <uses-permission android:name="com.android.vending.BILLING" />  <!-- payment 할 떄 추가해줘야하는데 어디에 추가해야하는지를 모르겠음-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <application
+        android:label="an_muk_so_ver1"
         android:icon="@mipmap/launcher_icon">
-        <activity
+       <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"
@@ -37,5 +39,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-    </application>
+   </application>
 </manifest>
+

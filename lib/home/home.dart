@@ -191,20 +191,13 @@ class _HomePageState extends State<HomePage> {
           }
           String content = snapshot.data.data()['title'];
 
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        content,
-                        style: Theme.of(context).textTheme.subtitle1,
-                      )
-                    ],
-                  )),
-            ],
+          return Container(
+            width: double.infinity - 32,
+            child: Text(
+              content,
+              style: Theme.of(context).textTheme.subtitle1,
+              overflow: TextOverflow.ellipsis,
+            ),
           );
         });
   }
@@ -225,29 +218,28 @@ class _HomePageState extends State<HomePage> {
           String account = snapshot.data.data()['account'];
           String name = snapshot.data.data()['name'];
 
-          return SizedBox(
-            child: Container(
-              alignment: Alignment.center,
-              width: double.infinity - 32,
-              //\height: ,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: Colors.black, width: 2)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            '$bank $account \n $name',
-                            style: Theme.of(context).textTheme.subtitle1,
-                          )
-                        ],
-                      )),
-                ],
-              ),
+          return Container(
+            alignment: Alignment.center,
+            width: double.infinity - 32,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: Colors.black, width: 2)),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: SizedBox(
+                    width: 260,
+                    child: Text(
+                      '$bank $account \n $name',
+                      style: Theme.of(context).textTheme.caption,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
         });
@@ -313,8 +305,8 @@ class _HomePageState extends State<HomePage> {
       );
     }
     String _shortenName(String name) {
-      if (name.length > 7) {
-        name = name.substring(0, 7);
+      if (name.length > 6) {
+        name = name.substring(0, 6);
         name = name + '...';
       }
 
@@ -340,8 +332,8 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Container(
                         child: SizedBox(
-                          width: 110,
-                          height: 110,
+                          width: 90,
+                          height: 90,
                           child: Container(
                               width: 88,
                               child: FoodImage(
@@ -350,7 +342,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Text(
                         _shortenName(snapshot[index].itemName),
-                        style: Theme.of(context).textTheme.subtitle2,
+                        style: Theme.of(context).textTheme.caption,
                       ),
                     ],
                   ),
