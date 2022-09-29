@@ -9,7 +9,10 @@ class ProviderModel with ChangeNotifier {
   InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
   bool available = true;
   StreamSubscription subscription;
-  final String myProductID = 'month_30';
+  ///TODO 이부분 바꿔라 김다은
+  final String myProductID = 'month_30'; //이건 안드로이드 실제 금액 5000원
+  //final String myProductID = 'sub_monthly_30'; // 이게 안드로이드 테스트 용임 100원
+  //final String myProductID = 'sub_month_30'; // 이건 아이폰 실제 금액 5000원
 
 
   bool _isPurchased = false;
